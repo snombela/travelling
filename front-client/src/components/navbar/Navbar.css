@@ -1,5 +1,6 @@
 .nav {
-    background-color: red;
+    background-color: #143340;
+    color: white;
     display: flex;
     flex-direction: row;
 }
