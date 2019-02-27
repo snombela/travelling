@@ -6,21 +6,21 @@ import { Link } from 'react-router-dom';
 class Signup extends Component {
   constructor(props){
     super(props);
-    this.state = { username: '', mail: '', password: '' };
+    this.state = { username: '', email: '', password: '' };
     this.service = new AuthService();
   }
 
   handleFormSubmit = (event) => {
     event.preventDefault();
     const username = this.state.username;
-    const mail = this.state.mail;
+    const email = this.state.email;
     const password = this.state.password;
   
-    this.service.signup(username, mail, password)
+    this.service.signup(username, email, password)
     .then( response => {
         this.setState({
             username: "", 
-            mail: "",
+            email: "",
             password: "",
         });
         this.props.getUser(response)
@@ -40,8 +40,8 @@ class Signup extends Component {
           <label>Username:</label>
           <input type="text" name="username" value={this.state.username} onChange={ e => this.handleChange(e)}/>
 
-          <label>Mail:</label>
-          <input type="mail" name="mail" value={this.state.mail} onChange={e => this.handleChange(e)}></input>
+          <label>Email:</label>
+          <input type="email" name="email" value={this.state.email} onChange={e => this.handleChange(e)}></input>
           
           <label>Password:</label>
           <input type="password" name="password" value={this.state.password} onChange={ e => this.handleChange(e)} />

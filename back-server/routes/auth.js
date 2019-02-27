@@ -29,10 +29,10 @@ router.post("/login", (req, res, next) => {
 
 router.post("/signup", (req, res, next) => {
   const username = req.body.username;
-  const mail = req.body.mail;
+  const email = req.body.email;
   const password = req.body.password;
-  if (username === "" || password === "" || mail === "") {
-    res.status(400).json({ message: 'Provide username, password and mail' });
+  if (username === "" || password === "" || email === "") {
+    res.status(400).json({ message: 'Provide username, password and email' });
     return;
   }
 
@@ -58,7 +58,7 @@ router.post("/signup", (req, res, next) => {
 
     const newUser = new User({
       username: username,
-      mail: mail,
+      email: email,
       password: hashPass
     });
 
