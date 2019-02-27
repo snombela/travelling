@@ -7,7 +7,7 @@ const locationSchema = new Schema({
   latitude: String,
   longitude: String,
   description: String,
-  images: Array 
+  images: [ {type: String} ]
 }, {
   timestamps: {
     createdAt: 'created_at',

@@ -3,9 +3,8 @@ const Schema   = mongoose.Schema;
 
 const movieshowSchema = new Schema({
   title: String,
-  background: String,
-  posterImg: String,
-
+  backgroundUrl: String,
+  posterUrl: String,
 }, {
   timestamps: {
     createdAt: 'created_at',
