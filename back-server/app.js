@@ -88,6 +88,8 @@ app.use('/', index);
 const authRoutes = require('./routes/auth');
 app.use('/api/auth', authRoutes);
 
+const movieshowRoutes = require('./routes/movieshow');
+app.use('/api/movieshow', movieshowRoutes);
 
       
 
