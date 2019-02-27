@@ -54,8 +54,9 @@ class App extends Component {
         <div className="App">
           <Navbar userInSession={this.state.loggedInUser} />
           <Switch>
+            <Route exact path="/" component={Home}/>
             <Route exact path='/signup' render={() => <Signup getUser={this.getTheUser}/>}/>
-            <Route exact path='/' render={() => <Login getUser={this.getTheUser}/>}/>
+            <Route exact path='/login' render={() => <Login getUser={this.getTheUser}/>}/>
           </Switch>
         </div>
       );

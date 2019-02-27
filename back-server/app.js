@@ -16,7 +16,7 @@ const cors = require('cors');
     
 
 mongoose
-  .connect('mongodb://localhost/back-server', {useNewUrlParser: true})
+  .connect('mongodb://localhost/travellingdb', {useNewUrlParser: true})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
@@ -86,7 +86,7 @@ const index = require('./routes/index');
 app.use('/', index);
 
 const authRoutes = require('./routes/auth');
-app.use('/auth', authRoutes);
+app.use('/api/auth', authRoutes);
 
 
       
