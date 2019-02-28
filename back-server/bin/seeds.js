@@ -42,11 +42,11 @@ addLocations(locationsUrl)
             Movieshow.findByIdAndUpdate(movie._id,
               { $push: { locations: { $each: showLocation } } })
               .then(response => {
-                Location.collection.update({},
+                return Location.collection.update({},
                   { $unset: { internalId: false } },
                   { multi: true, safe: true }
                 ).then(r => {
-                  Movieshow.collection.update({},
+                  return Movieshow.collection.update({},
                     { $unset: { internalLocationIds: false } },
                     { multi: false, safe: true }
                   ).then(r => mongoose.disconnect())

@@ -91,6 +91,9 @@ app.use('/api/auth', authRoutes);
 const movieshowRoutes = require('./routes/movieshow');
 app.use('/api/movieshow', movieshowRoutes);
 
+const locationRoutes = require('./routes/location');
+app.use('/api/location', locationRoutes);
+
 app.use((req, res, next) => {
   res.sendFile(__dirname + "/public/index.html");
  });
