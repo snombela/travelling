@@ -14,6 +14,7 @@ router.get('/', (req, res, next) =>{
 
 router.get('/:id', (req, res, next) =>{
     Movieshow.findById(req.params.id)
+    .populate("locations")
     .then(response => {
         res.status(200).json(response)
     })
