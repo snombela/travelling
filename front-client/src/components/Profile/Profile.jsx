@@ -12,27 +12,27 @@ export default class Profile extends Component {
 
   componentDidMount() {
     this.service.loggedin().then(user => {
+      console.log(user)
       this.props.changeUser(user)
     })
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log("También dentro")
     this.setState({ ...this.state, loggedInUser: nextProps["user"] });
   }
 
   render() {
+    console.log(this.props.loggedInUser)
     if (this.props.loggedInUser!==null){
     return (
       <div>
-        Estoy en mi perfil
+        <p>Estoy en mi perfil{this.props.loggedInUser}</p>
       </div>
     ) } else {
       return (
         <div>No estoy logueado</div>
       )
     }
-    
     // <Redirect to="/login"/>
   }
 }
