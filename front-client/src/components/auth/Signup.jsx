@@ -1,29 +1,32 @@
 import React, { Component } from 'react';
 import AuthService from './Auth-service';
 
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 class Signup extends Component {
   constructor(props){
     super(props);
-    this.state = { username: '', email: '', password: '' };
+    this.state = { 
+      username: '',
+      email: '', 
+      password: '', 
+      user: undefined
+    };
     this.service = new AuthService();
   }
 
   handleFormSubmit = (event) => {
     event.preventDefault();
-    const username = this.state.username;
-    const email = this.state.email;
-    const password = this.state.password;
-  
+    const {username, email, password} = this.state;
     this.service.signup(username, email, password)
-    .then( response => {
-        this.setState({
+    .then( newUser => {
+        this.setState({...this.state,
             username: "", 
             email: "",
             password: "",
+            user: newUser
         });
-        this.props.getUser(response)
+        this.props.changeUser(newUser)
     })
     .catch( error => console.log(error) )
   }
@@ -34,7 +37,7 @@ class Signup extends Component {
   }
 
   render(){
-    return(
+    return !this.state.user?(
         <div>
         <form onSubmit={this.handleFormSubmit}>
           <label>Username:</label>
@@ -54,7 +57,7 @@ class Signup extends Component {
         </p>
   
       </div>
-    )
+    ): <Redirect to="/profile"/>
   }
 }
 

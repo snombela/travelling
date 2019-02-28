@@ -4,63 +4,32 @@ import { Switch, Route } from "react-router-dom";
 import Home from './components/Home';
 import Signup from './components/auth/Signup';
 import Navbar from './components/navbar/Navbar';
-import AuthService from './components/auth/Auth-service';
 import Login from './components/auth/Login';
+import Profile from './components/Profile/Profile';
 
 
 class App extends Component {
 
   constructor(props){
     super(props)
-    this.state = { loggedInUser: null };
-    this.service = new AuthService ();
+    this.state = { loggedInUser: null ,user:null};
   }
-
-  fetchUser(){
-    if( this.state.loggedInUser === null ){
-      this.service.loggedin()
-      .then(response =>{
-        this.setState({
-          loggedInUser:  response
-        }) 
-      })
-      .catch( err =>{
-        this.setState({
-          loggedInUser:  false
-        }) 
-      })
-    }
+  changeUser = user => {
+    this.setState({...this.state,user})
   }
-
-  getTheUser= (userObj) => {
-    this.setState({...this.state,
-      loggedInUser: userObj
-    })
-  }
-
   render() {
-    this.fetchUser()
-    if(this.state.loggedInUser){
-      return (
-        <div className="App">
-        <Navbar  getUser={this.getTheUser} userInSession={this.state.loggedInUser} />
-          <Switch>
-              <Route exact path="/" component={Home}/>
-          </Switch>
-        </div>
-      );
-    } else {
-      return (
-        <div className="App">
-          <Navbar userInSession={this.state.loggedInUser} />
-          <Switch>
-            <Route exact path="/" component={Home}/>
-            <Route exact path='/signup' render={() => <Signup getUser={this.getTheUser}/>}/>
-            <Route exact path='/login' render={() => <Login getUser={this.getTheUser}/>}/>
-          </Switch>
-        </div>
-      );
-    }
+    return(
+      <div className="App">
+        <Navbar changeUser={this.changeUser} user={this.state.user}/>
+        <Switch>
+          <Route exact path="/" component={Home}/>
+          <Route exact path='/signup' render={() => <Signup changeUser={this.changeUser}/>}/>
+          <Route exact path='/login'  render={() => <Login changeUser={this.changeUser}/>}/>
+          <Route exact path='/profile' component={Profile}/>
+        </Switch>
+      </div>
+
+    )
   }
 }
 

@@ -4,3 +4,11 @@
     display: flex;
     flex-direction: row;
 }
+
+.ocultar {
+    display: none
+}
+
+.mostrar {
+    display: block
+}

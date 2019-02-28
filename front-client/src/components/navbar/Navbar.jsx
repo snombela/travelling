@@ -6,49 +6,38 @@ import '../navbar/Navbar.css'
 class Navbar extends Component {
   constructor(props){
     super(props);
-    this.state = { loggedInUser: null };
+    this.state = { loggedInUser: null};
     this.service = new AuthService();
   }
-  componentWillReceiveProps(nextProps) {
-    this.setState({...this.state, loggedInUser: nextProps["userInSession"]})
+  componentWillReceiveProps = nextProps => {
+    this.setState({...this.state,loggedInUser:nextProps["user"]})
   }
-
   logoutUser = () =>{
     this.service.logout()
     .then(() => {
       this.setState({ loggedInUser: null });
-      console.log(this.props.getUser)
-      this.props.getUser(null);  
+      this.props.changeUser(null)
     })
   }
+  render(){
+    console.log(this.state.loggedInUser)
+    return(
+      <nav className="nav">
+        <ul>
+          <li className={this.state.loggedInUser?'ocultar':'mostrar'}><Link to='/login' style={{ textDecoration: 'none' }}>Login</Link></li>
+          <li className={this.state.loggedInUser?'ocultar':'mostrar'}><Link to='/signup' style={{ textDecoration: 'none' }}>Signup</Link></li>
+          <li className={this.state.loggedInUser?'mostrar':'ocultar'} >
+            <Link to='/'>
+              <button  onClick={() => this.logoutUser()}>Logout</button>
+            </Link>
+          </li>
+        </ul>
+      </nav>
+    )
+      
+  }
 
-    render(){
-        if(this.state.loggedInUser){
-        return(
-            <nav className="nav">      
-            <ul >
-                <li>Welcome, {this.state.loggedInUser.username}</li>
-                <li>
-                <Link to='/'>
-                    <button onClick={() => this.logoutUser()}>Logout</button>
-                </Link>
-                </li>
-            </ul>
-            </nav>
-        )
-        } else {
-            return (
-                <div>
-                    <nav className="nav">
-                    <ul>
-                        <li><Link to='/login' style={{ textDecoration: 'none' }}>Login</Link></li>
-                        <li><Link to='/signup' style={{ textDecoration: 'none' }}>Signup</Link></li>
-                    </ul>
-                    </nav>
-                </div>
-            )
-        }
-    }
+
 }
 
 export default Navbar;
