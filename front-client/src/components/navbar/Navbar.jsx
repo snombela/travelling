@@ -12,6 +12,7 @@ class Navbar extends Component {
   componentWillReceiveProps = nextProps => {
     this.setState({...this.state, loggedInUser:nextProps["user"]})
   }
+  
   logoutUser = () =>{
     this.service.logout()
     .then(() => {
@@ -27,7 +28,7 @@ class Navbar extends Component {
           <li className={this.state.loggedInUser?'ocultar':'mostrar'}><Link to='/signup' style={{ textDecoration: 'none' }}>Signup</Link></li>
           <li className={this.state.loggedInUser?'mostrar':'ocultar'} >
             <Link to='/'>
-              <button  onClick={() => this.logoutUser()}>Logout</button>
+              <button onClick={() => this.logoutUser()}>Logout</button>
             </Link>
           </li>
         </ul>
