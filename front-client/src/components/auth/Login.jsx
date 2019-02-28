@@ -5,7 +5,11 @@ import { Link, Redirect} from 'react-router-dom';
 class Login extends Component {
   constructor(props){
     super(props);
-    this.state = { username: '', email: '', password: '', user: undefined};
+    this.state = { 
+      username: '',
+      email: '', 
+      password: '', 
+      user: undefined};
     this.service = new AuthService();
   }
 

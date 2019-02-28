@@ -10,7 +10,7 @@ class Navbar extends Component {
     this.service = new AuthService();
   }
   componentWillReceiveProps = nextProps => {
-    this.setState({...this.state,loggedInUser:nextProps["user"]})
+    this.setState({...this.state, loggedInUser:nextProps["user"]})
   }
   logoutUser = () =>{
     this.service.logout()
@@ -20,7 +20,6 @@ class Navbar extends Component {
     })
   }
   render(){
-    console.log(this.state.loggedInUser)
     return(
       <nav className="nav">
         <ul>

@@ -15,7 +15,7 @@ class App extends Component {
     this.state = { loggedInUser: null ,user:null};
   }
   changeUser = user => {
-    this.setState({...this.state,user})
+    this.setState({...this.state, user})
   }
   render() {
     return(
@@ -25,7 +25,7 @@ class App extends Component {
           <Route exact path="/" component={Home}/>
           <Route exact path='/signup' render={() => <Signup changeUser={this.changeUser}/>}/>
           <Route exact path='/login'  render={() => <Login changeUser={this.changeUser}/>}/>
-          <Route exact path='/profile' component={Profile}/>
+          <Route exact path='/profile' render={() => <Profile changeUser={this.changeUser}/>}/>
         </Switch>
       </div>
 
