@@ -5,7 +5,8 @@ import Home from './components/Home';
 import Signup from './components/auth/Signup';
 import Navbar from './components/navbar/Navbar';
 import Login from './components/auth/Login';
-import Profile from './components/Profile/Profile';
+import Profile from './components/profile/Profile';
+import Movieshow from './components/movieshow/Movieshow';
 
 
 class App extends Component {
@@ -14,9 +15,11 @@ class App extends Component {
     super(props)
     this.state = { loggedInUser: null ,user:null};
   }
+  
   changeUser = user => {
     this.setState({...this.state, user, loggedInUser:true})
   }
+
   render() {
     const { loggedInUser } = this.state
     return(
@@ -27,6 +30,8 @@ class App extends Component {
           <Route exact path='/signup' render={() => <Signup changeUser={this.changeUser}/>}/>
           <Route exact path='/login'  render={() => <Login changeUser={this.changeUser}/>}/>
           <Route exact path='/profile' render={() => <Profile changeUser={this.changeUser} loggedInUser={loggedInUser}/>}/>
+          <Route exact path='/movieshow' component={Movieshow}/>
+          
         </Switch>
       </div>
 

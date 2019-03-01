@@ -1,20 +1,23 @@
-import React, { Component } from 'react'
-import AuthService from '../auth/Auth-service';
+import React, { Component } from "react";
+import AuthService from "../auth/Auth-service";
 // import { Redirect } from 'react-router-dom';
 
-
 export default class Profile extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-    this.state = {loggedInUser: null};
+    this.state = {
+      loggedInUser: null,
+      user: null
+    };
     this.service = new AuthService();
   }
 
   componentDidMount() {
     this.service.loggedin().then(user => {
-      console.log(user)
-      this.props.changeUser(user)
-    })
+      console.log(user);
+      this.setState({ ...this.state, user: user });
+      this.props.changeUser(user);
+    });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -22,17 +25,15 @@ export default class Profile extends Component {
   }
 
   render() {
-    console.log(this.props.loggedInUser)
-    if (this.props.loggedInUser!==null){
-    return (
-      <div>
-        <p>Estoy en mi perfil{this.props.loggedInUser}</p>
-      </div>
-    ) } else {
+    console.log(this.props.loggedInUser);
+    if (this.props.loggedInUser !== null && this.state.user !== null) {
       return (
-        <div>No estoy logueado</div>
-      )
+        <div>
+          <p>Estoy en mi perfil: {this.state.user.username}</p>
+        </div>
+      );
+    } else {
+      return <div>No estoy logueado</div>;
     }
-    // <Redirect to="/login"/>
   }
 }
