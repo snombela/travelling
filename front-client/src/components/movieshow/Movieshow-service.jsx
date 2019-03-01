@@ -9,7 +9,12 @@ class Movieshowservice {
     this.service = service;
   }
 
-  get = (movieshowId) => {
+  getMovieshowAll = () => {
+      return this.service.get('/')
+      .then(response => response.data)
+  }
+
+  getMovieshowDetail = (movieshowId) => {
     return this.service.get(`/${movieshowId}`)
     .then(response => response.data)
   }

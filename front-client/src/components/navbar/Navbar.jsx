@@ -31,6 +31,7 @@ class Navbar extends Component {
               <button onClick={() => this.logoutUser()}>Logout</button>
             </Link>
           </li>
+          <li style={{ textDecoration: 'none' }}><Link to='/'>Home</Link></li>
         </ul>
       </nav>
     )

@@ -30,8 +30,7 @@ class App extends Component {
           <Route exact path='/signup' render={() => <Signup changeUser={this.changeUser}/>}/>
           <Route exact path='/login'  render={() => <Login changeUser={this.changeUser}/>}/>
           <Route exact path='/profile' render={() => <Profile changeUser={this.changeUser} loggedInUser={loggedInUser}/>}/>
-          <Route exact path='/movieshow' component={Movieshow}/>
-          
+          <Route exact path='/movieshow/:id' component={Movieshow}/>
         </Switch>
       </div>
 
