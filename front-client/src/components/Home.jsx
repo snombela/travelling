@@ -23,7 +23,7 @@ export default class Home extends Component {
     console.log(random)
     return this.state.movieshow.map(eachMovieshow => {
       return eachMovieshow.backgroundUrl
-    })[3]
+    })[random]
   }
 
 
@@ -33,7 +33,7 @@ export default class Home extends Component {
         <div>
           <div className="home-background" style={{backgroundImage: `url(${this.getBackground()})`}} />
           <div className="card-deck ">
-          {this.state.movieshow.map(eachMovieshow => {
+          {this.state.movieshow.slice(0, 12).map(eachMovieshow => {
             return (
               <div key={eachMovieshow._id} className="card">
               <Link to={`/movieshow/${eachMovieshow._id}`} style={{textDecoration: 'none'}}>

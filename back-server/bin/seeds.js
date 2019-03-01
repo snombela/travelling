@@ -24,7 +24,7 @@ mongoose
 Movieshow.collection.drop();
 Location.collection.drop();
 
-const movieShowUrl = "https://api.sheety.co/451bca78-b78d-40bb-b2f1-4d62f3a9b787"
+const movieShowUrl = "https://api.sheety.co/f151f64a-0a21-4cb6-ada0-4211bb5c9ccf"
 const locationsUrl = "https://api.sheety.co/2158d939-007c-4996-b64e-066c5f69f05c"
 
 
