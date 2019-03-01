@@ -78,6 +78,16 @@ router.post("/signup", (req, res, next) => {
   });
 });
 
+// router.post('/update', (req, res, next) => {
+//   if (req.isAuthenticated()) {
+//     const imageUrl = req.body.imageUrl;
+//     User.findOneAndUpdate({_id: req.user._id}, { $set: { imageUrl: imageUrl }}, {new:true})
+//       .then((updateUser) => {
+//         res.status(200).json(updateUser);
+//       });
+//   }
+// });
+
 router.post('/logout', (req, res, next) => {
   req.logout();
   res.status(200).json({ message: 'Log out success!' });

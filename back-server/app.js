@@ -81,21 +81,15 @@ app.use(session({
 app.use(flash());
 require('./passport')(app);
     
-
-const index = require('./routes/index');
-app.use('/', index);
-
-const authRoutes = require('./routes/auth');
-app.use('/api/auth', authRoutes);
-
-const movieshowRoutes = require('./routes/movieshow');
-app.use('/api/movieshow', movieshowRoutes);
-
-const locationRoutes = require('./routes/location');
-app.use('/api/location', locationRoutes);
+// Routes
+app.use('/', require('./routes/index'));
+app.use('/api/auth', require('./routes/auth'));
+app.use('/api/movieshow', require('./routes/movieshow'));
+app.use('/api/location', require('./routes/location'));
+app.use('/api', require('./routes/file-upload-routes'));
 
 app.use((req, res, next) => {
   res.sendFile(__dirname + "/public/index.html");
- });
+});
 
 module.exports = app;
