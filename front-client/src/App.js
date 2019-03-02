@@ -7,7 +7,7 @@ import Navbar from './components/navbar/Navbar';
 import Login from './components/auth/Login';
 import Profile from './components/profile/Profile';
 import Movieshow from './components/movieshow/Movieshow';
-
+import Location from './components/locations/Location';
 
 class App extends Component {
 
@@ -31,6 +31,7 @@ class App extends Component {
           <Route exact path='/login'  render={() => <Login changeUser={this.changeUser}/>}/>
           <Route exact path='/profile' render={() => <Profile changeUser={this.changeUser} loggedInUser={loggedInUser}/>}/>
           <Route exact path='/movieshow/:id' component={Movieshow}/>
+          <Route exact path='/location/:id' component={Location}/>
         </Switch>
       </div>
 

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import MovieshowService from "./Movieshow-service";
 import './Movieshow.css';
+import { Link } from 'react-router-dom';
 
 export default class Movieshow extends Component {
   constructor(props) {
@@ -25,17 +26,19 @@ export default class Movieshow extends Component {
     if (this.state.movieshow !== null) {
       return (
         <div>
-            <img src={this.state.movieshow.backgroundUrl} alt="background" className="background"/>
+            <div className="location-background" style={{backgroundImage:`url(${this.state.movieshow.backgroundUrl})`}}/>
             <img src={this.state.movieshow.posterUrl} alt="poster" className="poster"/>
            <h1>{this.state.movieshow.title}</h1>
            <div className="card-deck ">
             {this.state.movieshow.locations.map((eachLocation, idx) => {
                 return (
                   <div key={eachLocation._id} className="card">
+                  <Link to={`/location/${eachLocation._id}`} style={{textDecoration: 'none'}}>
                     <img src={eachLocation.images[0]} alt="pic place" className="card-img-top img-card"/>
                     <div className="card-body">
                     <h6 className="card-title">{eachLocation.name}</h6>
                     </div>
+                  </Link>
                   </div>
                 )
             })}

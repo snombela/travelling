@@ -26,7 +26,6 @@ export default class Home extends Component {
     })[random]
   }
 
-
   render() {
     if (this.state.movieshow !== null) {
       return (
