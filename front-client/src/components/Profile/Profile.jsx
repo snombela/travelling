@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import AuthService from "../auth/Auth-service";
-// import { Redirect } from 'react-router-dom';
+import AddPhoto from "./AddPhoto";
 
 export default class Profile extends Component {
   constructor(props) {
@@ -29,7 +29,8 @@ export default class Profile extends Component {
     if (this.props.loggedInUser !== null && this.state.user !== null) {
       return (
         <div>
-          <p>Estoy en mi perfil: {this.state.user.username}</p>
+          <p>Welcome {this.state.user.username}!</p>
+          <AddPhoto imageUrl={this.state.user.imageUrl} />
         </div>
       );
     } else {
