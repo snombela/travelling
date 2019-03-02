@@ -8,7 +8,11 @@ const locationSchema = new Schema({
   latitude: String,
   longitude: String,
   description: String,
-  images: [ {type: String} ]
+  images: [ {type: String} ],
+  comments: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Comment'
+  }],
 }, {
   timestamps: {
     createdAt: 'created_at',

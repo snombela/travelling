@@ -87,6 +87,7 @@ app.use('/api/auth', require('./routes/auth'));
 app.use('/api/movieshow', require('./routes/movieshow'));
 app.use('/api/location', require('./routes/location'));
 app.use('/api', require('./routes/file-upload-routes'));
+app.use('/api/comment', require('./routes/comment'));
 
 app.use((req, res, next) => {
   res.sendFile(__dirname + "/public/index.html");

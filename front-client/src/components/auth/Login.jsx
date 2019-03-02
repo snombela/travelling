@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import AuthService from './Auth-service';
 import { Link, Redirect} from 'react-router-dom';
+import './Login-Signup.css'
 
 class Login extends Component {
   constructor(props){
@@ -14,7 +15,6 @@ class Login extends Component {
   }
 
   handleFormSubmit = (event) => {
-    console.log(this.props)
     event.preventDefault();
     const {email, password}= this.state;
     this.service.login(email, password)
@@ -36,19 +36,21 @@ class Login extends Component {
     
   render(){
     return !this.state.user?(
-      <div>
+      <div className="form">
         <form onSubmit={this.handleFormSubmit}>
+        <div className="form-group">
           <label>Email:</label>
-          <input type="email" name="email" value={this.state.email} onChange={ e => this.handleChange(e)}/>
+          <input type="email" name="email" className="form-control" placeholder="email" value={this.state.email} onChange={ e => this.handleChange(e)}/>
 
           <label>Password:</label>
-          <input type="password" name="password" value={this.state.password} onChange={ e => this.handleChange(e)} />
+          <input type="password" name="password" className="form-control" placeholder="password" value={this.state.password} onChange={ e => this.handleChange(e)} />
           
-          <input type="submit" value="Login" />
-        </form>
+          <input type="submit" value="Login" className="btn btn-primary" />
+          </div>
         <p>Don't have account? 
             <Link to={"/signup"}> Signup</Link>
         </p>
+        </form>
       </div>
     ): <Redirect to="/profile"/>
   }

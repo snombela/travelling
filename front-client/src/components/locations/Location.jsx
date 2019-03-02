@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import LocationService from "./Location-service";
+import './Location.css'
+import Comment from "../comment/Comment";
 
 export default class Location extends Component {
   constructor(props) {
@@ -32,6 +34,15 @@ export default class Location extends Component {
               </div>
             );
           })}
+        
+        {this.state.location.comments.map((eachComment)=> {
+          return (
+            <div key={eachComment}>
+              <h6>{eachComment.title}</h6>
+              <p>{eachComment.content}</p>
+            </div>)
+        })}
+        <Comment locationId={this.state.location._id}></Comment>
         </div>
       );
     } else {

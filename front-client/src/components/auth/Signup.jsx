@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import AuthService from './Auth-service';
+import './Login-Signup.css'
 
 import { Link, Redirect } from 'react-router-dom';
 
@@ -38,24 +39,24 @@ class Signup extends Component {
 
   render(){
     return !this.state.user?(
-        <div>
+        <div className="form">
         <form onSubmit={this.handleFormSubmit}>
+        <div className="form-group">
           <label>Username:</label>
-          <input type="text" name="username" value={this.state.username} onChange={ e => this.handleChange(e)}/>
+          <input type="text" name="username" className="form-control" value={this.state.username} onChange={ e => this.handleChange(e)}/>
 
           <label>Email:</label>
-          <input type="email" name="email" value={this.state.email} onChange={e => this.handleChange(e)}></input>
+          <input type="email" name="email" className="form-control" value={this.state.email} onChange={e => this.handleChange(e)}></input>
           
           <label>Password:</label>
-          <input type="password" name="password" value={this.state.password} onChange={ e => this.handleChange(e)} />
+          <input type="password" name="password" className="form-control" value={this.state.password} onChange={ e => this.handleChange(e)} />
           
-          <input type="submit" value="Signup" />
-        </form>
-  
+          <input type="submit" value="Signup" className="btn btn-primary"/>
+          </div>
         <p>Already have account? 
             <Link to={"/login"}> Login</Link>
         </p>
-  
+        </form>
       </div>
     ): <Redirect to="/profile"/>
   }

@@ -26,9 +26,10 @@ export default class Movieshow extends Component {
     if (this.state.movieshow !== null) {
       return (
         <div>
-            <div className="location-background" style={{backgroundImage:`url(${this.state.movieshow.backgroundUrl})`}}/>
-            <img src={this.state.movieshow.posterUrl} alt="poster" className="poster"/>
-           <h1>{this.state.movieshow.title}</h1>
+            <div className="location-background" style={{backgroundImage:`url(${this.state.movieshow.backgroundUrl})`}}>
+           </div>
+           <img src={this.state.movieshow.posterUrl} alt="poster" className="poster"/>
+           <span class="movieshow-title">{this.state.movieshow.title}</span>
            <div className="card-deck ">
             {this.state.movieshow.locations.map((eachLocation, idx) => {
                 return (
