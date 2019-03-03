@@ -41,17 +41,19 @@ class Signup extends Component {
     return !this.state.user?(
         <div className="form">
         <form onSubmit={this.handleFormSubmit}>
+        <img src="/images/travelling-icon-orange.png" alt="icon"/>
         <div className="form-group">
+          <h3>Sign Up</h3>
           <label>Username:</label>
-          <input type="text" name="username" className="form-control" value={this.state.username} onChange={ e => this.handleChange(e)}/>
+          <input type="text" name="username" className="form-control" placeholder="name"value={this.state.username} onChange={ e => this.handleChange(e)}/>
 
           <label>Email:</label>
-          <input type="email" name="email" className="form-control" value={this.state.email} onChange={e => this.handleChange(e)}></input>
+          <input type="email" name="email" className="form-control" placeholder="email" value={this.state.email} onChange={e => this.handleChange(e)}></input>
           
           <label>Password:</label>
-          <input type="password" name="password" className="form-control" value={this.state.password} onChange={ e => this.handleChange(e)} />
+          <input type="password" name="password" className="form-control" placeholder="password" value={this.state.password} onChange={ e => this.handleChange(e)} />
           
-          <input type="submit" value="Signup" className="btn btn-primary"/>
+          <input type="submit" value="Signup" className="button"/>
           </div>
         <p>Already have account? 
             <Link to={"/login"}> Login</Link>

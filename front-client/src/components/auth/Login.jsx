@@ -38,14 +38,16 @@ class Login extends Component {
     return !this.state.user?(
       <div className="form">
         <form onSubmit={this.handleFormSubmit}>
+        <img src="/images/travelling-icon-orange.png" alt="icon"/>
         <div className="form-group">
+          <h3>Login</h3>
           <label>Email:</label>
           <input type="email" name="email" className="form-control" placeholder="email" value={this.state.email} onChange={ e => this.handleChange(e)}/>
 
           <label>Password:</label>
           <input type="password" name="password" className="form-control" placeholder="password" value={this.state.password} onChange={ e => this.handleChange(e)} />
           
-          <input type="submit" value="Login" className="btn btn-primary" />
+          <input type="submit" value="Login" className="button" />
           </div>
         <p>Don't have account? 
             <Link to={"/signup"}> Signup</Link>

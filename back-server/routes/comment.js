@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Comment = require("../models/Comment");
-const Location = require("../models/Location");
+const Location = require("../models/Location")
 
 router.post("/", (req, res, next) => {
   if (req.isAuthenticated()) {

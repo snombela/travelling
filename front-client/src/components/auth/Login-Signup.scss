@@ -2,9 +2,40 @@
     display: flex;
     justify-content: center;
     text-align: center;
+    margin: 50px;
+}
+
+.form img {
+    width: 350px;
 }
 
 .form-group {
-    width: 400px;
-    
+    margin: 20px;
+    padding: 20px;
+
+    width: 430px;
+
+    border-radius: 20px;
+    border: 1px solid rgb(187, 183, 183);    
 }
+
+.form label {
+   margin-top: 10px;
+}
+
+.button {
+    margin-top: 20px;
+
+    background-color: #74E0D4;
+    color: white;
+    border-radius: 10px;
+    border: 1px solid #74E0D4;
+    padding: 7px 15px;
+
+    &:hover {
+        background-color: #F3FBFF;
+        color:#74E0D4;
+    }
+}
+
+//#74E0D4#F3FBFF#FA9028#FF0044
