@@ -18,6 +18,11 @@ class LocationService {
     return this.service.get(`/${locationId}`)
     .then(response => response.data)
   }
+
+  getComments = (locationId) => {
+    return this.service.get(`/${locationId}/comments`)
+    .then(response => response.data)
+  }
 }
 
 export default LocationService;

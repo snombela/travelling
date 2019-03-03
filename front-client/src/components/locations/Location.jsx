@@ -7,13 +7,15 @@ export default class Location extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      location: null
+      location: null,
+      comments: []
     };
     this.service = new LocationService();
   }
 
   componentDidMount() {
     this.getLocation()
+    this.getComments()
   }
 
   getLocation = () => {
@@ -23,8 +25,15 @@ export default class Location extends Component {
     });
   };
 
-  changeComment = comment => {
-    this.getLocation()
+  getComments = () => {
+    const locationId = this.props.match.params.id
+    this.service.getComments(locationId).then(comments => {
+      this.setState({ ...this.state, comments: comments });
+    });
+  };
+
+  changeComment = (newComment) => {
+    this.getComments()
   };
 
   render() {
@@ -42,14 +51,14 @@ export default class Location extends Component {
               </div>
             );
           })}
-
-          {this.state.location.comments.map(eachComment => {
+          
+          {this.state.comments.map(eachComment => {
             return (
               <div key={eachComment}>
                 <div className="media">
                   <img
                     className="align-self-start mr-3"
-                    src="http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png"
+                    src={eachComment.userId.imageUrl}
                     alt="user pic"
                   />
                   <div className="media-body">
