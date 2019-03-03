@@ -36,10 +36,10 @@ class Login extends Component {
     
   render(){
     return !this.state.user?(
-      <div className="form">
+      <div className="form box-container">
         <form onSubmit={this.handleFormSubmit}>
         <img src="/images/travelling-icon-orange.png" alt="icon"/>
-        <div className="form-group">
+        <div className="form-group container">
           <h3>Login</h3>
           <label>Email:</label>
           <input type="email" name="email" className="form-control" placeholder="email" value={this.state.email} onChange={ e => this.handleChange(e)}/>

@@ -20,10 +20,19 @@ class Navbar extends Component {
       this.props.changeUser(null)
     })
   }
+
+  // var liClasses = classNames({
+  //   'main-class': true,
+  //   'activeClass': this.state.loggedInUser?'ocultar':'mostrar'
+  // });
+
+  // return (<li className={liClasses}>{data.name}</li>);
+
   render(){
     return(
       <nav className="nav">
         <ul>
+        <li><img src="/images/travelling-icon.png" alt="icon"/></li>
           <li className={this.state.loggedInUser?'ocultar':'mostrar'}><Link to='/login' style={{ textDecoration: 'none' }}>Login</Link></li>
           <li className={this.state.loggedInUser?'ocultar':'mostrar'}><Link to='/signup' style={{ textDecoration: 'none' }}>Signup</Link></li>
           <li className={this.state.loggedInUser?'mostrar':'ocultar'} >
@@ -31,7 +40,10 @@ class Navbar extends Component {
               <button onClick={() => this.logoutUser()}>Logout</button>
             </Link>
           </li>
-          <li style={{ textDecoration: 'none' }}><Link to='/'>Home</Link></li>
+          <li className={this.state.loggedInUser?'mostrar':'ocultar'} >
+            <Link to='/profile' style={{ textDecoration: 'none' }}>Profile</Link>
+          </li>
+          <li><Link to='/' style={{ textDecoration: 'none' }}>Home</Link></li>
         </ul>
       </nav>
     )

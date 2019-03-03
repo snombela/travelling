@@ -39,10 +39,10 @@ class Signup extends Component {
 
   render(){
     return !this.state.user?(
-        <div className="form">
+        <div className="form box-container">
         <form onSubmit={this.handleFormSubmit}>
         <img src="/images/travelling-icon-orange.png" alt="icon"/>
-        <div className="form-group">
+        <div className="form-group container">
           <h3>Sign Up</h3>
           <label>Username:</label>
           <input type="text" name="username" className="form-control" placeholder="name"value={this.state.username} onChange={ e => this.handleChange(e)}/>

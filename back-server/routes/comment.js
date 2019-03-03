@@ -25,6 +25,8 @@ router.post("/comment", (req, res, next) => {
   }
 });
 
+//devuelve los comentarios de una localización
+
 router.get("/location/:locationId/comments", (req, res, next) => {
   Location.findById(req.params.locationId)
   .populate({path: "comments", populate: {path: "userId"}})
