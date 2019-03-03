@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import AuthService from './Auth-service';
 import { Link, Redirect} from 'react-router-dom';
-import './Login-Signup.css'
+import './Login-Signup.scss'
 
 class Login extends Component {
   constructor(props){

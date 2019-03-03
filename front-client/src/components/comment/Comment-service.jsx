@@ -10,7 +10,6 @@ class CommentService {
   }
 
   sendComment = (locationId, content, title) => { 
-      console.log("dentro2")
       const comment= {locationId: locationId, content: content, title: title }
       return this.service.post('/', comment) 
       .then(response => response.data)

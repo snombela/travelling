@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import AuthService from "../auth/Auth-service";
-import './Addphoto.css'
+import './Addphoto.scss'
 
 class AddPhoto extends Component {
   constructor(props) {

@@ -18,7 +18,9 @@ export default class Comment extends Component {
                 title: '',
                 comment: ''
             })
+            this.props.changeComment(comment)
         }).catch( error => console.log(error))
+        
         event.preventDefault()
     }
 
@@ -31,13 +33,14 @@ export default class Comment extends Component {
     return (
       <div>
         <form onSubmit={this.handleFormSubmit}>
-
+        <div className="form-group">
          <label>Title:</label>
-          <input type="text" name="title" value={this.state.title} onChange={ e => this.handleChange(e)}/>
+          <input type="text" name="title" className="form-control" value={this.state.title} onChange={ e => this.handleChange(e)}/>
           <label>Comment:</label>
-          <textarea type="text" name="comment" value={this.state.comment} onChange={ e => this.handleChange(e)}/>
+          <textarea type="text" name="comment" className="form-control" value={this.state.comment} onChange={ e => this.handleChange(e)}/>
           
-          <input type="submit" value="Submit" />
+          <input type="submit" value="Submit" className="btn btn-primary" />
+          </div>
       </form>
       </div>
     )

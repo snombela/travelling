@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import MovieshowService from "../components/movieshow/Movieshow-service";
-import '../components/movieshow/Movieshow.css'
-import '../components/Home.css'
+import '../components/movieshow/Movieshow.scss'
+import '../components/Home.scss'
 import { Link } from 'react-router-dom';
+import SearchBar from "./seachBar/SearchBar";
 
 export default class Home extends Component {
   constructor(props) {
@@ -12,6 +13,14 @@ export default class Home extends Component {
     };
     this.service = new MovieshowService();
   }
+
+  // handlerFunction = () => {
+  //   let newState = {
+  //       ...this.state
+  //   };
+  //   this.setState(newState);
+  // }
+
   componentDidMount() {
     this.service.getMovieshowAll().then(movieshow => {
       this.setState({ ...this.state, movieshow: movieshow });
@@ -31,6 +40,7 @@ export default class Home extends Component {
       return (
         <div>
           <div className="home-background" style={{backgroundImage: `url(${this.getBackground()})`}} />
+          <SearchBar handlerFunction={this.handlerFunction}/>
           <div className="card-deck ">
           {this.state.movieshow.slice(0, 12).map(eachMovieshow => {
             return (

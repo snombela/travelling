@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import MovieshowService from "./Movieshow-service";
-import './Movieshow.css';
+import './Movieshow.scss';
 import { Link } from 'react-router-dom';
 
 export default class Movieshow extends Component {

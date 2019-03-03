@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import AuthService from '../auth/Auth-service';
-import '../navbar/Navbar.css'
+import '../navbar/Navbar.scss'
 
 class Navbar extends Component {
   constructor(props){

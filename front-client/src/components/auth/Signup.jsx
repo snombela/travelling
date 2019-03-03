@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import AuthService from './Auth-service';
-import './Login-Signup.css'
+import './Login-Signup.scss'
 
 import { Link, Redirect } from 'react-router-dom';
 
