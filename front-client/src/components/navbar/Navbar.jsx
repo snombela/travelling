@@ -3,54 +3,50 @@ import { Link } from 'react-router-dom';
 import AuthService from '../auth/Auth-service';
 import '../navbar/Navbar.scss'
 
-class Navbar extends Component {
-  constructor(props){
+export default class Navbar extends Component {
+  constructor(props) {
     super(props);
-    this.state = { loggedInUser: null};
+    this.state = { loggedInUser: null };
     this.service = new AuthService();
   }
   componentWillReceiveProps = nextProps => {
-    this.setState({...this.state, loggedInUser:nextProps["user"]})
+    this.setState({ ...this.state, loggedInUser: nextProps["user"] })
   }
-  
-  logoutUser = () =>{
+
+  logoutUser = () => {
     this.service.logout()
-    .then(() => {
-      this.setState({ loggedInUser: null });
-      this.props.changeUser(null)
-    })
+      .then(() => {
+        this.setState({ loggedInUser: null });
+        this.props.changeUser(null)
+      })
   }
 
-  // var liClasses = classNames({
-  //   'main-class': true,
-  //   'activeClass': this.state.loggedInUser?'ocultar':'mostrar'
-  // });
+  render() {
 
-  // return (<li className={liClasses}>{data.name}</li>);
 
-  render(){
-    return(
-      <nav className="nav">
-        <ul>
-        <li><img src="/images/travelling-icon.png" alt="icon"/></li>
-          <li className={this.state.loggedInUser?'ocultar':'mostrar'}><Link to='/login' style={{ textDecoration: 'none' }}>Login</Link></li>
-          <li className={this.state.loggedInUser?'ocultar':'mostrar'}><Link to='/signup' style={{ textDecoration: 'none' }}>Signup</Link></li>
-          <li className={this.state.loggedInUser?'mostrar':'ocultar'} >
-            <Link to='/'>
-              <button onClick={() => this.logoutUser()}>Logout</button>
-            </Link>
-          </li>
-          <li className={this.state.loggedInUser?'mostrar':'ocultar'} >
-            <Link to='/profile' style={{ textDecoration: 'none' }}>Profile</Link>
-          </li>
-          <li><Link to='/' style={{ textDecoration: 'none' }}>Home</Link></li>
-        </ul>
+
+    return (
+      <nav className="menu-fixed navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="/"><img src="/images/travelling-icon.png" alt="" /></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="nav collapse navbar-collapse justify-content-end" id="navbarNav"></div>
+        {(this.state.loggedInUser) ? (
+          <ul className="nav navbar-nav">
+            <li className="nav-item"><Link to='/profile' style={{ textDecoration: 'none' }}>Profile</Link></li>
+            <li className="nav-item">
+              <Link to='/'><button onClick={() => this.logoutUser()}>Logout</button></Link>
+            </li>
+          </ul>
+        ) : (
+            <ul className="nav navbar-nav">
+              <li className="nav-item"><Link to='/login' style={{ textDecoration: 'none' }}>Login</Link></li>
+              <li className="nav-item"><Link to='/signup' style={{ textDecoration: 'none' }}>Signup</Link></li>
+            </ul>
+          )
+        }
       </nav>
     )
-      
   }
-
-
 }
-
-export default Navbar;

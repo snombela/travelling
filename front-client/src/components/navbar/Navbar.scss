@@ -1,22 +1,9 @@
-.nav {
+nav {
     background-color: #143340;
     color: white;
-}
-
-.nav ul {
-    display: flex;
-    flex-direction: row;
+    padding: 20px 0;
 }
 
 .nav li {
-    padding: 5px;
-    list-style: none;
-}
-
-.ocultar {
-    display: none
-}
-
-.mostrar {
-    display: block
+    padding: 0 10px;
 }
