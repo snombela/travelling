@@ -22,16 +22,13 @@ export default class Navbar extends Component {
   }
 
   render() {
-
-
-
     return (
       <nav className="menu-fixed navbar navbar-expand-lg navbar-light">
-        <a class="navbar-brand" href="/"><img src="/images/travelling-icon.png" alt="" /></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+        <Link to="/" className="navbar-brand"><img src="/images/travelling-icon.png" alt="" /></Link>
+        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span className="navbar-toggler-icon"></span>
         </button>
-        <div class="nav collapse navbar-collapse justify-content-end" id="navbarNav"></div>
+        <div className="nav collapse navbar-collapse justify-content-end" id="navbarNav"></div>
         {(this.state.loggedInUser) ? (
           <ul className="nav navbar-nav">
             <li className="nav-item"><Link to='/profile' style={{ textDecoration: 'none' }}>Profile</Link></li>
@@ -41,8 +38,8 @@ export default class Navbar extends Component {
           </ul>
         ) : (
             <ul className="nav navbar-nav">
-              <li className="nav-item"><Link to='/login' style={{ textDecoration: 'none' }}>Login</Link></li>
-              <li className="nav-item"><Link to='/signup' style={{ textDecoration: 'none' }}>Signup</Link></li>
+              <li className="nav-item"><Link to='/login' style={{ textDecoration: 'none' }}><span class="nav-item">Login</span></Link></li>
+              <li className="nav-item"><Link to='/signup' style={{ textDecoration: 'none' }}><span class="button-nav">Sign Up</span></Link></li>
             </ul>
           )
         }

@@ -8,6 +8,7 @@ import Login from './components/auth/Login';
 import Profile from './components/profile/Profile';
 import Movieshow from './components/movieshow/Movieshow';
 import Location from './components/locations/Location';
+import Search from './components/search/Search';
 
 class App extends Component {
 
@@ -32,6 +33,7 @@ class App extends Component {
           <Route exact path='/profile' render={() => <Profile changeUser={this.changeUser} loggedInUser={loggedInUser}/>}/>
           <Route exact path='/movieshow/:id' component={Movieshow}/>
           <Route exact path='/location/:id' component={Location}/>
+          <Route exact path='/search' component={Search}/>
         </Switch>
       </div>
 
