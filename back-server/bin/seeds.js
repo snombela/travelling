@@ -7,6 +7,7 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const Movieshow = require("../models/Movieshow");
 const Location = require("../models/Location");
+const User = require("../models/User");
 const axios = require("axios");
 
 const bcryptSalt = 10;
@@ -20,49 +21,76 @@ mongoose
     console.error('Error connecting to mongo', err)
   });
 
-// Drop table
-Movieshow.collection.drop();
-Location.collection.drop();
 
 const movieShowUrl = "https://api.sheety.co/f151f64a-0a21-4cb6-ada0-4211bb5c9ccf"
 const locationsUrl = "https://api.sheety.co/2158d939-007c-4996-b64e-066c5f69f05c"
+const usersUrl = "https://api.sheety.co/40f9be1d-f395-4fb9-a338-10bd0e7a1e88"
 
 
-addLocations(locationsUrl)
-  .then(locations => {
-    addMovies(movieShowUrl)
-      .then(movies => {
-        console.log("");
-        movies.filter(movie => movie.internalLocationIds != null)
-          .forEach(movie => {
-            showLocation = locations
-              .filter(location => movie.internalLocationIds.split(',').includes(location.internalId))
-              .map(location => location._id)
-            console.log("La serie " + movie.title + " se ha vinculado con " + showLocation.length + " localizaciones")
-            Movieshow.findByIdAndUpdate(movie._id,
-              { $push: { locations: { $each: showLocation } } })
-              .then(response => {
-                return Location.collection.update({},
-                  { $unset: { internalId: false } },
-                  { multi: true, safe: true }
-                ).then(r => {
-                  return Movieshow.collection.update({},
-                    { $unset: { internalLocationIds: false } },
-                    { multi: false, safe: true }
-                  ).then(r => mongoose.disconnect())
+addLocationsAndMovies()
+// addUsers(usersUrl);
+
+
+/// functions
+function addUsers(usersUrl) {
+  User.collection.drop();
+  return axios.get(usersUrl)
+    .then(response => {
+      users = response.data
+        .map(user => {
+          return {
+            username: user.name,
+            email: user.email,
+            password: bcrypt.hashSync(user.password.toString(), bcrypt.genSaltSync(bcryptSalt)),
+            imageUrl: user.imageUrl
+          }
+        })
+      return User.create(users)
+        .then(users => {
+          console.log(`Created ${users.length} Users`);
+          mongoose.disconnect();
+        }).catch(err => {
+          console.log(err);
+          mongoose.disconnect();
+        })
+
+    }).catch(err => {
+      console.log("The error has occurred", err);
+      mongoose.disconnect();
+    });
+}
+
+function addLocationsAndMovies() {
+  Movieshow.collection.drop();
+  Location.collection.drop();
+  return addLocations(locationsUrl)
+    .then(locations => {
+      addMovies(movieShowUrl)
+        .then(movies => {
+          console.log("");
+          movies.filter(movie => movie.internalLocationIds != null)
+            .forEach(movie => {
+              showLocation = locations
+                .filter(location => movie.internalLocationIds.split(',').includes(location.internalId))
+                .map(location => location._id)
+              console.log("La serie " + movie.title + " se ha vinculado con " + showLocation.length + " localizaciones")
+              Movieshow.findByIdAndUpdate(movie._id,
+                { $push: { locations: { $each: showLocation } } })
+                .then(response => {
+                  return removeMovie()
+                }).then(() => {
+                  return removeLocation()
+                  
+                }).then(r => {
+                  mongoose.disconnect()
                 }).catch(err => {
                   console.log(err);
                   mongoose.disconnect();
                 });
-              })
-          })
-      })
-  });
-
-
-
-
-/// functions
+            })
+        })
+    });
+}
 
 function addMovies(movieShowUrl) {
   return axios.get(movieShowUrl)
@@ -120,3 +148,21 @@ function addLocations(locationsUrl) {
       mongoose.disconnect();
     });
 }
+
+
+function removeLocation() {
+  return Location.update({},
+    { $unset: { internalId: false } },
+    { multi: true, safe: true }
+  ).then(() => {
+  })
+}
+
+function removeMovie() {
+  return Movieshow.update({},
+    { $unset: { internalLocationIds: false } },
+    { multi: true, safe: true }
+  ).then(() => {
+  })
+}
+
