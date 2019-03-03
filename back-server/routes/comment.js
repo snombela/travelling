@@ -3,13 +3,13 @@ const router = express.Router();
 const Comment = require("../models/Comment");
 const Location = require("../models/Location")
 
-router.post("/", (req, res, next) => {
+router.post("/comment", (req, res, next) => {
   if (req.isAuthenticated()) {
-    Comment.create({ content: req.body.content, title: req.body.title, authorId: req.user._id })
+    Comment.create({ content: req.body.content, title: req.body.title, userId: req.user._id })
       .then(comment => {
           Location.findByIdAndUpdate(req.body.locationId,
             {$push: {comments: comment._id}}
-            ).then(newLocation => {
+            ).then(() => {
                 res.status(200).json(comment);
             }).catch(err => {
                 console.log(err)
@@ -24,5 +24,17 @@ router.post("/", (req, res, next) => {
     res.status(403).json({ message: "Unauthorized" });
   }
 });
+
+router.get("/location/:locationId/comments", (req, res, next) => {
+  Location.findById(req.params.locationId)
+  .populate({path: "comments", populate: {path: "userId"}})
+  .then(response => {
+    res.status(200).json(response.comments);
+  })
+  .catch(err => {
+    console.log(err)
+    res.status(404).json({ message: "Location doesn't found" });
+  });
+})
 
 module.exports = router;
