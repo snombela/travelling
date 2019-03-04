@@ -4,6 +4,7 @@ import '../components/movieshow/Movieshow.scss'
 import '../components/Home.scss'
 import { Link } from 'react-router-dom';
 import SearchBar from "./seachBar/SearchBar";
+import GoogleMapReactComponent from "../components/maps/Map";
 
 export default class Home extends Component {
   constructor(props) {
@@ -54,7 +55,7 @@ export default class Home extends Component {
           {this.state.movieshow.slice(0, 12).map(eachMovieshow => {
             return (
               <div key={eachMovieshow._id} className="card">
-              <div class="thumbnail">
+              <div className="thumbnail">
               <Link to={`/movieshow/${eachMovieshow._id}`} style={{textDecoration: 'none'}}>
                 <img src={eachMovieshow.backgroundUrl} alt="background" className="card-img-top img-card"/>
                 <div className="card-body">
@@ -62,10 +63,12 @@ export default class Home extends Component {
                 </div>
               </Link>
             </div>
+           
             </div>
             );
           })}
           </div>
+          <GoogleMapReactComponent></GoogleMapReactComponent>
         </div>
       );
     } else {
