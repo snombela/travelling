@@ -41,6 +41,7 @@ export default class Location extends Component {
       return (
         <div>
           <h1>{this.state.location.name}</h1>
+          <h6>{this.state.location.address}</h6>
           <p>{this.state.location.description}</p>
           {this.state.location.images.map(eachImage => {
             return (
@@ -51,7 +52,7 @@ export default class Location extends Component {
               </div>
             );
           })}
-          
+
           {this.state.comments.map(eachComment => {
             return (
               <div key={eachComment}>

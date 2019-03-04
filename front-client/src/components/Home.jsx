@@ -54,12 +54,14 @@ export default class Home extends Component {
           {this.state.movieshow.slice(0, 12).map(eachMovieshow => {
             return (
               <div key={eachMovieshow._id} className="card">
+              <div class="thumbnail">
               <Link to={`/movieshow/${eachMovieshow._id}`} style={{textDecoration: 'none'}}>
                 <img src={eachMovieshow.backgroundUrl} alt="background" className="card-img-top img-card"/>
                 <div className="card-body">
                 <h6 className="card-title">{eachMovieshow.title}</h6>
                 </div>
               </Link>
+            </div>
             </div>
             );
           })}

@@ -4,7 +4,8 @@ const Schema   = mongoose.Schema;
 const locationSchema = new Schema({
   internalId: String,
   name: String,
-  adress: String,
+  movieshow: String,
+  address: String,
   latitude: String,
   longitude: String,
   description: String,
