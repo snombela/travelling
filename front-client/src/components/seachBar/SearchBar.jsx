@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom';
 import './SearchBar.scss'
 
 export default class SearchBar extends Component {
@@ -16,7 +15,7 @@ export default class SearchBar extends Component {
     };
 
     getPadding = () => {
-      return (this.state.search.length === 0) ? 260 : 20;
+      return (this.state.search.length === 0) ? "260px 20%" : "20px 20%";
     }
 
   render() {

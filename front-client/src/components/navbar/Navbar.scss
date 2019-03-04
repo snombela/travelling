@@ -3,14 +3,15 @@ nav {
     color: white; 
 }
 
-.nav ul {
+nav ul {
     text-decoration: none;
 }
 
-.nav li .nav-item {
-    padding: 0 20px;
+nav li span {
+    padding: 0 0px;
     color: white;
     list-style: none;
+    margin-right: 20px;
     &:hover {
         color: #FA9028;
     }
@@ -20,7 +21,7 @@ nav {
     width: 150px;
 }
 
-.nav li .button-nav {
+nav li .button { // signup button
     background-color: #FA9028;
     color: white;
     border-radius: 10px;
@@ -33,12 +34,9 @@ nav {
     }
 }
 
-.nav-item button img{
-    width: 20px;
+nav li button { // logout button
+    background-color: transparent;
+    border: 0px;
+    margin: 0px;
+    padding: 0px;   
 }
-
-.nav-item button {
-    background-color: red;
-}
-
-

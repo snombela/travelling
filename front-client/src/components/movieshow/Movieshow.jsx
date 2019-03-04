@@ -32,12 +32,15 @@ export default class Movieshow extends Component {
            <span class="movieshow-title">{this.state.movieshow.title}</span>
            <div className="card-deck ">
             {this.state.movieshow.locations.map((eachLocation, idx) => {
+              console.log("dentro")
+              console.log(eachLocation.movieshow)
                 return (
                   <div key={eachLocation._id} className="card">
                   <Link to={`/location/${eachLocation._id}`} style={{textDecoration: 'none'}}>
                     <img src={eachLocation.images[0]} alt="pic place" className="card-img-top img-card"/>
                     <div className="card-body">
                     <h6 className="card-title">{eachLocation.name}</h6>
+                    <p>{eachLocation.movieshow}</p>
                     </div>
                   </Link>
                   </div>

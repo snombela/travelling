@@ -23,26 +23,27 @@ export default class Navbar extends Component {
 
   render() {
     return (
-      <nav className="menu-fixed navbar navbar-expand-lg navbar-light">
+      <nav className="navbar navbar-expand-sm navbar-dark">
         <Link to="/" className="navbar-brand"><img src="/images/travelling-icon.png" alt="" /></Link>
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="nav collapse navbar-collapse justify-content-end" id="navbarNav"></div>
-        {(this.state.loggedInUser) ? (
-          <ul className="nav navbar-nav">
-            <li className="nav-item"><Link to='/profile' style={{ textDecoration: 'none' }}>Profile</Link></li>
-            <li className="nav-item">
-              <Link to='/'><button onClick={() => this.logoutUser()}>Logout</button></Link>
-            </li>
-          </ul>
-        ) : (
-            <ul className="nav navbar-nav">
-              <li className="nav-item"><Link to='/login' style={{ textDecoration: 'none' }}><span class="nav-item">Login</span></Link></li>
-              <li className="nav-item"><Link to='/signup' style={{ textDecoration: 'none' }}><span class="button-nav">Sign Up</span></Link></li>
+        <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
+          {(this.state.loggedInUser) ? (
+            <ul className="navbar-nav">
+              <li className="nav-item"><Link to='/profile' className="nav-link"><span>Profile</span></Link></li>
+              <li className="nav-item">
+                <Link to='/' className="nav-link"><button onClick={() => this.logoutUser()}><span>Logout</span></button></Link>
+              </li>
             </ul>
-          )
-        }
+          ) : (
+              <ul className="navbar-nav">
+                <li className="nav-item"><Link to='/login' className="nav-link"><span>Login</span></Link></li>
+                <li className="nav-item"><Link to='/signup' className="nav-link"><span className="button">Sign Up</span></Link></li>
+              </ul>
+            )
+          }
+        </div>
       </nav>
     )
   }
