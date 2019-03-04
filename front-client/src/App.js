@@ -9,6 +9,7 @@ import Profile from './components/profile/Profile';
 import Movieshow from './components/movieshow/Movieshow';
 import Location from './components/locations/Location';
 import Search from './components/search/Search';
+import SearchLocation from './components/search/SearchLocation';
 
 class App extends Component {
 
@@ -34,6 +35,7 @@ class App extends Component {
           <Route exact path='/movieshow/:id' component={Movieshow}/>
           <Route exact path='/location/:id' component={Location}/>
           <Route exact path='/search' component={Search}/>
+          <Route exact path='/searchLocation' component={SearchLocation}/>
         </Switch>
       </div>
 
