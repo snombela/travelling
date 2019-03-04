@@ -15,7 +15,7 @@ export default class SearchBar extends Component {
     };
 
     getPadding = () => {
-      return (this.state.search.length === 0) ? "260px 20%" : "20px 20%";
+      return (this.state.search.length === 0) ? "20% 20%" : "10px 20px";
     }
 
   render() {

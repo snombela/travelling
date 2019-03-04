@@ -4,7 +4,6 @@ import '../components/movieshow/Movieshow.scss'
 import '../components/Home.scss'
 import { Link } from 'react-router-dom';
 import SearchBar from "./seachBar/SearchBar";
-import GoogleMapReactComponent from "../components/maps/Map";
 
 export default class Home extends Component {
   constructor(props) {
@@ -68,7 +67,6 @@ export default class Home extends Component {
             );
           })}
           </div>
-          <GoogleMapReactComponent></GoogleMapReactComponent>
         </div>
       );
     } else {

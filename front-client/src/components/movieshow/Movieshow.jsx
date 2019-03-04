@@ -27,7 +27,7 @@ export default class Movieshow extends Component {
     if (this.state.movieshow !== null) {
       return (
         <div>
-            <div className="location-background" style={{backgroundImage:`url(${this.state.movieshow.backgroundUrl})`}}>
+            <div className="image-background" style={{backgroundImage:`url(${this.state.movieshow.backgroundUrl})`}}>
            </div>
            <img src={this.state.movieshow.posterUrl} alt="poster" className="poster"/>
            <span class="movieshow-title">{this.state.movieshow.title}</span>
