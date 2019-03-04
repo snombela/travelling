@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import MovieshowService from "./Movieshow-service";
 import './Movieshow.scss';
 import { Link } from 'react-router-dom';
+import Mapbox from "../maps/Mapbox";
 
 export default class Movieshow extends Component {
   constructor(props) {
@@ -45,6 +46,9 @@ export default class Movieshow extends Component {
                   </div>
                 )
             })}
+            </div>
+            <div className="map">
+            <Mapbox locations={this.state.movieshow.locations} />
             </div>
         </div>
       );
