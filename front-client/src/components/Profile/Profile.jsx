@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import AuthService from "../auth/Auth-service";
 import AddPhoto from "./AddPhoto";
+import "./Profile.scss"
 
 export default class Profile extends Component {
   constructor(props) {
@@ -28,8 +29,8 @@ export default class Profile extends Component {
     console.log(this.props.loggedInUser);
     if (this.props.loggedInUser !== null && this.state.user !== null) {
       return (
-        <div>
-          <p>Welcome {this.state.user.username}!</p>
+        <div className="profile-container">
+          <h2>Welcome {this.state.user.username}!</h2>
           <AddPhoto imageUrl={this.state.user.imageUrl} />
         </div>
       );
