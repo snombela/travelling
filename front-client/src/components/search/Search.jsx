@@ -14,7 +14,6 @@ export default class Search extends Component {
     }
     this.movieService = new Movieshowservice();
     this.locationService = new LocationService();
-
   }
 
   componentDidMount() {

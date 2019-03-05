@@ -21,7 +21,7 @@ export default class SearchBar extends Component {
   render() {
     return (
       <div style={{padding: this.getPadding()}}>
-        <input type="text" name="search" className="form-control search" onChange={e => this.changeTextSearch(e)} placeholder="search"/>  
+        <input type="search" results="5" name="search" className="form-control search" onChange={e => this.changeTextSearch(e)} placeholder="Search..."/>  
       </div>
     )
   }
