@@ -6,7 +6,10 @@ const userSchema = new Schema({
   email: String,
   password: String,
   imageUrl: {type: String, default: '/images/user-photo.jpg'},
-  favorites: Array,
+  favorites: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Location'
+  }],
 }, {
   timestamps: {
     createdAt: 'created_at',

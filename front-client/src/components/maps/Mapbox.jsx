@@ -2,9 +2,8 @@ import React, { Component } from 'react'
 import ReactMapboxGl, { Layer, Feature } from "react-mapbox-gl";
 import 'mapbox-gl/dist/mapbox-gl.css';
 
-
 const Map = ReactMapboxGl({
-  accessToken: "pk.eyJ1Ijoic25vbWJlbGEiLCJhIjoiY2pzdXNocG1xMWJ1bDQ0czk4eGZqdTh3YyJ9.CcMLs-gqGuZDSGtU_DEhCQ"
+  accessToken: process.env.REACT_APP_API_MAPS
 });
 
 export default class Mapbox extends Component {
