@@ -23,7 +23,6 @@ export default class Home extends Component {
   }
 
   getBackground = () => {
-    console.log(this.state)
     if (this.state.textToSearch.length > 0) { return }
     const random = Math.floor(Math.random() * this.state.movieshow.length);
     return this.state.movieshow.map(eachMovieshow => {
