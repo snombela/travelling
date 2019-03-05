@@ -9,18 +9,13 @@ const Map = ReactMapboxGl({
 export default class Mapbox extends Component {
 
   render() {
-    console.log(this.props.locations)
     var center = this.props.locations.reduce((res, l) => {
-      console.log(l)
       res.latitude += l.latitude;
       res.longitude += l.longitude;
       return res;
      }, {})
      center.latitude = center.latitude / this.props.locations.length;
      center.longitude = center.longitude / this.props.locations.length;
-
-     console.log(center)
-
     return (
       <Map
         style="mapbox://styles/mapbox/light-v9"

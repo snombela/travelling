@@ -2,3 +2,27 @@ img {
     width: 100px;
 }
 
+.carousel-item{
+    height: 550px;
+}
+
+.colors {
+    display: flex;
+    flex-direction: row;
+}
+
+.red {
+    background-color: red;
+    padding: 20px;
+    flex-basis: 50%;
+}
+
+.yellow {
+    background-color: yellow;
+    padding: 20px;
+    flex-basis: 50%;
+}
+
+.media {
+    margin: 20px;
+}
