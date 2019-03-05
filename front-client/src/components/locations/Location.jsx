@@ -3,6 +3,7 @@ import LocationService from "./Location-service";
 import "./Location.scss";
 import Comment from "../comment/Comment";
 import AccountService from "./Account-service";
+import ReactBootstrapCarousel from "react-bootstrap-carousel";
 
 //url friendly
 //filtrado en busqueda
@@ -42,13 +43,13 @@ export default class Location extends Component {
 
   getFavorites = () => {
     const locationId = this.props.match.params.id;
-     this.serviceAccount.getFavorites()
-    .then(favorites => {
-      const isFavorite = favorites.filter(favorite => {
-        return favorite._id === locationId;
-      }).length===1;
-      this.setState({ ...this.state, isFavorite: isFavorite });
-    })
+    this.serviceAccount.getFavorites()
+      .then(favorites => {
+        const isFavorite = favorites.filter(favorite => {
+          return favorite._id === locationId;
+        }).length === 1;
+        this.setState({ ...this.state, isFavorite: isFavorite });
+      })
   }
 
   changeComment = (newComment) => {
@@ -70,47 +71,29 @@ export default class Location extends Component {
       return (
         <div>
           <div className="bd-example">
-            <div id="carouselExampleIndicators" className="carousel slide carousel-fade z-depth-1-half" data-ride="carousel">
-              <ol className="carousel-indicators">
-                {this.state.location.images.map((img, idx) => {
-                  return <li data-target="#carouselExampleIndicators" data-slide-to={idx}></li>
-                })}
-              </ol>
-              <div className="carousel-inner">
-                {this.state.location.images.map(eachImage => {
-                  return (
-                      <div className="carousel-item active">
-                        <img className="d-block w-100" src={eachImage} alt="images" />
-                    </div>
-                  );
-                })}
-              </div>
-              <a className="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
-                <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span className="sr-only">Previous</span>
-              </a>
-              <a className="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
-                <span className="carousel-control-next-icon" aria-hidden="true"></span>
-                <span className="sr-only">Next</span>
-              </a>
-            </div>
+            <ReactBootstrapCarousel
+              version={4}>
+              {this.state.location.images.map(eachImage => {
+                return <img className="image-carrusel" src={eachImage} alt="images" />
+              })}
+            </ReactBootstrapCarousel>
           </div>
           <div className="colors">
-          <div className="red">
-          <h1>{this.state.location.name}</h1>
-          <button className="button-fav" onClick={this.clickFavButton}>{
-            this.state.isFavorite ? 
-            <img src="/images/red-heart.png" alt="heart"/> :
-            <img src="/images/grey-heart.png" alt="heart"/> 
-             }</button>
-          <h6>{this.state.location.address}</h6>
-          <p>{this.state.location.description}</p>
+            <div className="red">
+              <h1>{this.state.location.name}</h1>
+              <button className="button-fav" onClick={this.clickFavButton}>{
+                this.state.isFavorite ?
+                  <img src="/images/red-heart.png" alt="heart" /> :
+                  <img src="/images/grey-heart.png" alt="heart" />
+              }</button>
+              <h6>{this.state.location.address}</h6>
+              <p>{this.state.location.description}</p>
+            </div>
+            <div className="yellow">
+              <p>MAPA</p>
+            </div>
           </div>
-          <div className="yellow">
-          <p>MAPA</p>
-          </div>
-          </div>
-       
+
           {this.state.comments.map(eachComment => {
             return (
               <div key={eachComment}>

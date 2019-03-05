@@ -10,6 +10,7 @@
     "mapbox-gl": "^0.53.1",
     "node-sass": "^4.11.0",
     "react": "^16.8.3",
+    "react-bootstrap-carousel": "^3.4.1",
     "react-dom": "^16.8.3",
     "react-mapbox-gl": "^4.2.0",
     "react-router-dom": "^4.3.1",

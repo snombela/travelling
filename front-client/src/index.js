@@ -5,8 +5,9 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 // import 'jquery';
-import 'bootstrap/dist/css/bootstrap.css';
-// import 'bootstrap/dist/js/bootstrap';
+
+import "bootstrap/dist/css/bootstrap.css";
+import "react-bootstrap-carousel/dist/react-bootstrap-carousel.css";
 
 import { BrowserRouter as Router } from 'react-router-dom';
 
