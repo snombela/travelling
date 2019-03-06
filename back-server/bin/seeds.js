@@ -8,6 +8,7 @@ const bcrypt = require("bcrypt");
 const Movieshow = require("../models/Movieshow");
 const Location = require("../models/Location");
 const User = require("../models/User");
+const Comment = require("../models/Comment");
 const axios = require("axios");
 
 const bcryptSalt = 10;
@@ -25,14 +26,22 @@ mongoose
 const movieShowUrl = "https://api.sheety.co/f151f64a-0a21-4cb6-ada0-4211bb5c9ccf"
 const locationsUrl = "https://api.sheety.co/2158d939-007c-4996-b64e-066c5f69f05c"
 const usersUrl = "https://api.sheety.co/40f9be1d-f395-4fb9-a338-10bd0e7a1e88"
+const commentUrl = "https://api.sheety.co/e2391d32-be86-41fa-abf5-09d6a8637336"
 
 
-addLocationsAndMovies()
-// addUsers(usersUrl);
+// addLocationsAndMovies().then(() => {
+//   mongoose.disconnect();
+// })
+
+// addUsers().then(() => {
+//   mongoose.disconnect();
+// })
+
+// addCommentWithUsersAndLocations()
 
 
 /// functions
-function addUsers(usersUrl) {
+function addUsers() {
   User.collection.drop();
   return axios.get(usersUrl)
     .then(response => {
@@ -48,15 +57,15 @@ function addUsers(usersUrl) {
       return User.create(users)
         .then(users => {
           console.log(`Created ${users.length} Users`);
-          mongoose.disconnect();
+          // mongoose.disconnect();
         }).catch(err => {
           console.log(err);
-          mongoose.disconnect();
+          // mongoose.disconnect();
         })
 
     }).catch(err => {
       console.log("The error has occurred", err);
-      mongoose.disconnect();
+      // mongoose.disconnect();
     });
 }
 
@@ -65,10 +74,10 @@ function addLocationsAndMovies() {
   Location.collection.drop();
   return addLocations(locationsUrl)
     .then(locations => {
-      addMovies(movieShowUrl)
+      return addMovies(movieShowUrl)
         .then(movies => {
           console.log("");
-          movies.filter(movie => movie.internalLocationIds != null)
+          return movies.filter(movie => movie.internalLocationIds != null)
             .forEach(movie => {
               showLocation = locations
                 .filter(location => movie.internalLocationIds.split(',').includes(location.internalId))
@@ -80,12 +89,11 @@ function addLocationsAndMovies() {
                   return removeMovie()
                 }).then(() => {
                   return removeLocation()
-                  
                 }).then(r => {
                   mongoose.disconnect()
                 }).catch(err => {
                   console.log(err);
-                  mongoose.disconnect();
+                  // mongoose.disconnect();
                 });
             })
         })
@@ -110,12 +118,12 @@ function addMovies(movieShowUrl) {
           return movies
         }).catch(err => {
           console.log(err);
-          mongoose.disconnect();
+          // mongoose.disconnect();
         })
 
     }).catch(err => {
       console.log("The error has occurred", err);
-      mongoose.disconnect();
+      // mongoose.disconnect();
     });
 }
 
@@ -141,12 +149,53 @@ function addLocations(locationsUrl) {
           return locations
         }).catch(err => {
           console.log(err);
-          mongoose.disconnect();
+          // mongoose.disconnect();
         })
     }).catch(err => {
       console.log("The error has occurred", err);
-      mongoose.disconnect();
+      // mongoose.disconnect();
     });
+}
+
+
+function addCommentWithUsersAndLocations() {
+  Comment.collection.drop();
+  return Location.find({})
+    .then(locations => {
+      return locations.map(location => {
+        return User.find({})
+          .then(users => {
+            users = getRandom(users)
+            users.forEach(user => {
+              return addComment(user._id)
+                .then(response => {
+                  console.log(response)
+                  return Location.findByIdAndUpdate(location._id,
+                    { $push: { comments: { $each: [response] } } })
+                    .then(r => {
+                      console.log("En la localización " + location.name + " se han creado " + response.length + " para el usuario " + user.username)
+                    })
+                })
+            })
+          })
+      })
+    })
+}
+
+function addComment(userId) {
+  return axios.get(commentUrl)
+    .then(response => {
+      comments = response.data
+      num = Math.floor(Math.random() * comments.length)
+      comment = comments[num]
+
+      newComment = {
+        title: comment.title,
+        content: comment.comment,
+        userId: userId
+      }
+      return Comment.create(newComment)
+    })
 }
 
 
@@ -164,5 +213,16 @@ function removeMovie() {
     { multi: true, safe: true }
   ).then(() => {
   })
+}
+
+function getRandom(array) {
+  num = Math.floor(Math.random() * array.length)
+  result = []
+  for (i = 0; i < num; i++) {
+
+    a = Math.floor(Math.random() * array.length)
+    result.push(array[a])
+  }
+  return result
 }
 
