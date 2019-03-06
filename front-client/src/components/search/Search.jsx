@@ -28,6 +28,7 @@ export default class Search extends Component {
     })
   
   }
+  
   getAllMovies = () => {
     return this.movieService.getMovieshowAll()
     .then(movieshow => {

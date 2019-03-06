@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import CommentService from './Comment-service';
 import '../comment/Comment.scss'
-import { Collapse, Button, CardBody, Card } from 'reactstrap';
-
 
 export default class Comment extends Component {
   constructor(props) {
@@ -42,8 +40,6 @@ export default class Comment extends Component {
   render() {
     return (
       <div>
-        {/* <Button onClick={this.toggle} className="collapse-button" style={{ marginBottom: '1rem', backgroundColor: 'transparent', border: 'none'}}><h5>Add comment</h5></Button>
-        <Collapse isOpen={this.state.collapse}> */}
         <form onSubmit={this.handleFormSubmit}>
           <div className="form-group comment-container">
             <input type="text" name="title" className="form-control" value={this.state.title} onChange={e => this.handleChange(e)} placeholder="Your name" />
@@ -51,7 +47,6 @@ export default class Comment extends Component {
             <input type="submit" value="Submit" className="btn btn-primary btn-submit" />
           </div>
         </form>
-        {/* </Collapse> */}
       </div>
     )
   }
