@@ -3,7 +3,7 @@ import axios from 'axios';
 class AccountService {
   constructor() {
     let service = axios.create({
-      baseURL: "http://localhost:5000/api/account/me/favorite", //cambiar por la variable de entorno `${process.env.API_URL}/api/auth`
+      baseURL: `${process.env.REACT_APP_API_URL}/api/account/me/favorite`, 
       withCredentials: true
     });
     this.service = service;

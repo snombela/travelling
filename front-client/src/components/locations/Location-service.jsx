@@ -3,7 +3,7 @@ import axios from 'axios';
 class LocationService {
   constructor() {
     let service = axios.create({
-      baseURL: "http://localhost:5000/api/location", //cambiar por la variable de entorno `${process.env.API_URL}/api/auth`
+      baseURL: `${process.env.REACT_APP_API_URL}/api/location`, 
       withCredentials: true
     });
     this.service = service;
