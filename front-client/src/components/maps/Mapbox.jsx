@@ -6,24 +6,34 @@ const Map = ReactMapboxGl({
   accessToken: process.env.REACT_APP_API_MAPS
 });
 
+
 export default class Mapbox extends Component {
 
-  render() {
-    var center = this.props.locations.reduce((res, l) => {
-      res.latitude += l.latitude;
-      res.longitude += l.longitude;
+  getCenter = (locations) => {
+    var center = locations.reduce((res, l) => {
+      res.latitude += parseFloat(l.latitude);
+      res.longitude += parseFloat(l.longitude);
       return res;
-     }, {})
-     center.latitude = center.latitude / this.props.locations.length;
-     center.longitude = center.longitude / this.props.locations.length;
+    }, {
+        latitude: 0,
+        longitude: 0
+      })
+    center.latitude = center.latitude / locations.length;
+    center.longitude = center.longitude / locations.length;
+    return center
+  }
+
+  render() {
+   const center = this.getCenter(this.props.locations)
+
     return (
       <Map
         style="mapbox://styles/mapbox/light-v9"
-        center={[0.3976717, 44.928195]}
-        zoom={[1]}
+        center={[center.longitude, center.latitude]}
+        zoom={[4]}
         containerStyle={{
           height: "50vh",
-          width: "70vw",
+          width: "100%",
 
         }}>
         <Layer
@@ -31,7 +41,7 @@ export default class Mapbox extends Component {
           id="marker"
           layout={{ "icon-image": "marker-15" }}>
           {this.props.locations.map(l => {
-           return  <Feature coordinates={[l.longitude, l.latitude]} />  
+            return <Feature coordinates={[l.longitude, l.latitude]} />
           })}
         </Layer>
       </Map>

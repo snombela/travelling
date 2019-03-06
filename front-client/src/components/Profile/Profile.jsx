@@ -36,29 +36,33 @@ export default class Profile extends Component {
     console.log(this.props.loggedInUser);
     if (this.props.loggedInUser !== null && this.state.user !== null) {
       return (
+
         <div className="profile-container">
-          <h2>Welcome {this.state.user.username}!</h2>
-          <AddPhoto imageUrl={this.state.user.imageUrl} />
-          <div className="card-deck ">
-          {this.state.locations.map((eachLocation) => {
-            return (
-              <div key={eachLocation._id} className="card">
-                <div class="thumbnail">
-                  <Link to={`/location/${eachLocation._id}`} style={{ textDecoration: 'none' }}>
-                    <img src={eachLocation.images[0]} alt="pic place" className="card-img-top img-card" />
-                    <div className="card-body">
-                      <h6 className="card-title">{eachLocation.name}</h6>
+          <div className="profile-box">
+            <h2>Welcome {this.state.user.username}!</h2>
+            <AddPhoto imageUrl={this.state.user.imageUrl} />
+            <h5>My favorites places</h5>
+            <div className="card-deck ">
+              {this.state.locations.map((eachLocation) => {
+                return (
+                  <div key={eachLocation._id} className="card">
+                    <div class="thumbnail">
+                      <Link to={`/location/${eachLocation._id}`} style={{ textDecoration: 'none' }}>
+                        <img src={eachLocation.images[0]} alt="pic place" className="card-img-top img-card" />
+                        <div className="card-body">
+                          <h6 className="card-title">{eachLocation.name}</h6>
+                        </div>
+                      </Link>
                     </div>
-                  </Link>
-                </div>
-              </div>
-            )
-          })}
+                  </div>
+                )
+              })}
+            </div>
+          </div>
         </div>
-        </div>
-        );
+      );
     } else {
       return <div>No estoy logueado</div>;
-        }
-      }
     }
+  }
+}

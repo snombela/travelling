@@ -1,4 +1,22 @@
 .profile-container {
+    background-image: url('/images/pattrn.jpeg');
+    height: 170px;
+    
+}
+.profile-box {
     text-align: center;
-    margin-top: 40px;
+}
+
+.profile-box h2{
+    text-align: center;
+    font-size: 2.25em;
+    line-height: 1.25;
+    padding-top: 40px;
+    color: white;
+} 
+
+.profile-box h5 {
+    color: black;
+    text-align: left;
+    margin-left: 120px;
 }

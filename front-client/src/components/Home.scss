@@ -7,9 +7,13 @@
 
 .thumbnail {
     transition: 0.15s ease-in-out;
-
-
     &:hover{
       transform: translateY(-10px) scale(1.02);
     }
 }
+
+.card-body h5 {
+  text-align: center;
+  // color: #74E0D4;
+}
+

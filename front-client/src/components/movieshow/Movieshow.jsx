@@ -39,7 +39,7 @@ export default class Movieshow extends Component {
                   <Link to={`/location/${eachLocation._id}`} style={{textDecoration: 'none'}}>
                     <img src={eachLocation.images[0]} alt="pic place" className="card-img-top img-card"/>
                     <div className="card-body">
-                    <h6 className="card-title">{eachLocation.name}</h6>
+                    <h5 className="card-title">{eachLocation.name}</h5>
                     </div>
                   </Link>
                   </div>

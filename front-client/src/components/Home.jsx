@@ -57,7 +57,7 @@ export default class Home extends Component {
               <Link to={`/movieshow/${eachMovieshow._id}`} style={{textDecoration: 'none'}}>
                 <img src={eachMovieshow.backgroundUrl} alt="background" className="card-img-top img-card"/>
                 <div className="card-body">
-                <h6 className="card-title">{eachMovieshow.title}</h6>
+                <h5 className="card-title">{eachMovieshow.title}</h5>
                 </div>
               </Link>
             </div>

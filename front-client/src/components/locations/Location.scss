@@ -12,25 +12,63 @@ img {
     object-fit: cover;
 }
 
-.colors {
+.info-container {
     display: flex;
     flex-direction: row;
 }
 
-.red {
-    background-color: green;
+.left-container {
     padding: 20px;
     flex-basis: 50%;
 }
 
-.yellow {
-    background-color: yellow;
+.title-container {
+    display: flex;
+    flex-direction: row;
+    h1 {
+        color: #FA9028;
+        font-size: 3em;
+        line-height: 1.05em;
+        padding: 10px 5px;
+    }
+}
+
+.left-container {
+    h4 {
+    font-size: 1.125em;
+    line-height: 1.22222222em;
+    padding: 10px 5px;
+    color:#74E0D4;
+    }
+
+    p {
+    text-align: justify;
+    padding: 10px 5px;
+    }
+}
+
+.title-container button {
+    margin-left: 20px;
+}
+
+.right-container {
     padding: 20px;
     flex-basis: 50%;
 }
 
 .media {
-    margin: 20px;
+    margin: 15px 30px;
+    background-color: rgb(244, 247, 249);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.media img {
+    border-radius: 5px;
+}
+
+.media-body h6 {
+    font-weight: 800;
 }
 
 .button-fav {
@@ -41,3 +79,20 @@ img {
 .button-fav img {
     width: 20px;
 }
+
+  /* Device = Low Resolution Tablets, Mobiles (Landscape) Screen = B/w 481px to 767px*/
+  @media (min-width: 481px) and (max-width: 767px) {
+    .info-container {
+        display: flex;
+        flex-direction: column;
+    }  
+  }
+  
+  /* Device = Most of the Smartphones Mobiles (Portrait) Screen = B/w 320px to 479px*/
+  @media (max-width: 480px) {  
+    .info-container {
+        display: flex;
+        flex-direction: column;
+    }
+    
+  }

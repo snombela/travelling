@@ -3,6 +3,7 @@ import LocationService from "./Location-service";
 import "./Location.scss";
 import Comment from "../comment/Comment";
 import AccountService from "./Account-service";
+import Mapbox from "../maps/Mapbox";
 import ReactBootstrapCarousel from "react-bootstrap-carousel";
 
 //url friendly
@@ -37,6 +38,7 @@ export default class Location extends Component {
   getComments = () => {
     const locationId = this.props.match.params.id;
     this.serviceLocation.getComments(locationId).then(comments => {
+      console.log(comments)
       this.setState({ ...this.state, comments: comments });
     });
   };
@@ -78,22 +80,23 @@ export default class Location extends Component {
               })}
             </ReactBootstrapCarousel>
           </div>
-          <div className="colors">
-            <div className="red">
+          <div className="info-container">
+            <div className="left-container">
+              <div className="title-container">
               <h1>{this.state.location.name}</h1>
-              <button className="button-fav" onClick={this.clickFavButton}>{
-                this.state.isFavorite ?
+              <button className="button-fav" onClick={this.clickFavButton}>
+              {this.state.isFavorite ?
                   <img src="/images/red-heart.png" alt="heart" /> :
                   <img src="/images/grey-heart.png" alt="heart" />
               }</button>
-              <h6>{this.state.location.address}</h6>
+              </div>
+              <h4>{this.state.location.address}</h4>
               <p>{this.state.location.description}</p>
             </div>
-            <div className="yellow">
-              <p>MAPA</p>
+            <div className="right-container">
+              <Mapbox locations={[this.state.location]} />
             </div>
           </div>
-
           {this.state.comments.map(eachComment => {
             return (
               <div key={eachComment}>
@@ -105,6 +108,7 @@ export default class Location extends Component {
                   />
                   <div className="media-body">
                     <h6 className="mt-0">{eachComment.title}</h6>
+                    {/* <h6>{eachComment.created_at}</h6> */}
                     <p>{eachComment.content}</p>
                   </div>
                 </div>
@@ -115,7 +119,7 @@ export default class Location extends Component {
             locationId={this.state.location._id}
             changeComment={this.changeComment}
           />
-        </div>
+          </div>
       );
     } else {
       return <h1>No hay nada que mostrar</h1>;

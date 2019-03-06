@@ -49,7 +49,7 @@
 .card-deck {
     max-width: 1200px;
     margin: 0 auto !important;
-    padding-bottom: 100px;
+    padding-bottom: 50px;
 }
 
 .card {
@@ -78,6 +78,9 @@ h1 {
 
 .map {
     display: flex;
-    justify-content: center;
-    margin-bottom: 70px;
+    align-items: center;
+    margin: 0 auto 70px auto !important;
+    max-width: 1200px;
+    
+    
 }
