@@ -27,29 +27,33 @@ export default class Movieshow extends Component {
     if (this.state.movieshow !== null) {
       return (
         <div>
-            <div className="image-background" style={{backgroundImage:`url(${this.state.movieshow.backgroundUrl})`}}>
-           </div>
-           <img src={this.state.movieshow.posterUrl} alt="poster" className="poster"/>
-           <span className="movieshow-title">{this.state.movieshow.title}</span>
-           <div className="card-deck ">
+          <div className="image-background" style={{ backgroundImage: `url(${this.state.movieshow.backgroundUrl})` }}>
+          </div>
+          <img src={this.state.movieshow.posterUrl} alt="poster" className="poster" />
+          <span className="movieshow-title">{this.state.movieshow.title}</span>
+          <div className="card-deck ">
             {this.state.movieshow.locations.map((eachLocation, idx) => {
-                return (
-                  <div key={eachLocation._id} className="card">
-                   <div class="thumbnail">
-                  <Link to={`/location/${eachLocation._id}`} style={{textDecoration: 'none'}}>
-                    <img src={eachLocation.images[0]} alt="pic place" className="card-img-top img-card"/>
-                    <div className="card-body">
-                    <h5 className="card-title">{eachLocation.name}</h5>
-                    </div>
-                  </Link>
+              return (
+                <div key={eachLocation._id} className="card">
+                  <div class="thumbnail">
+                    <Link to={`/location/${eachLocation._id}`} style={{ textDecoration: 'none' }}>
+                      <img src={eachLocation.images[0]} alt="pic place" className="card-img-top img-card" />
+                      <div className="card-body">
+                        <h5 className="card-title">{eachLocation.name}</h5>
+                      </div>
+                    </Link>
                   </div>
-                  </div>
-                )
+                </div>
+              )
             })}
-            </div>
+          </div>
+          {(this.state.movieshow.locations.lenght > 0) ?
             <div className="map">
-            <Mapbox locations={this.state.movieshow.locations} />
+              <Mapbox locations={this.state.movieshow.locations} />
             </div>
+            : <div></div>
+          }
+
         </div>
       );
     } else {
