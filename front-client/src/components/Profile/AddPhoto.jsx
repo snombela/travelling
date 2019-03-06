@@ -46,10 +46,10 @@ class AddPhoto extends Component {
     return (
       <div>
         <div className="photo">
-          <img src={this.state.imageUrl} alt="user profile" />
           <form>
             <input className="button-file" type="file" onChange={e => this.handleFileUpload(e)} />
           </form>
+          <img src={this.state.imageUrl} alt="user profile" />
         </div>
       </div>
     );
