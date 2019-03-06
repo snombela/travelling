@@ -29,16 +29,13 @@ const usersUrl = "https://api.sheety.co/40f9be1d-f395-4fb9-a338-10bd0e7a1e88"
 const commentUrl = "https://api.sheety.co/e2391d32-be86-41fa-abf5-09d6a8637336"
 
 
-// addLocationsAndMovies().then(() => {
-//   mongoose.disconnect();
-// })
+// addLocationsAndMovies()
 
 // addUsers().then(() => {
 //   mongoose.disconnect();
 // })
 
 // addCommentWithUsersAndLocations()
-
 
 /// functions
 function addUsers() {
@@ -77,25 +74,7 @@ function addLocationsAndMovies() {
       return addMovies(movieShowUrl)
         .then(movies => {
           console.log("");
-          return movies.filter(movie => movie.internalLocationIds != null)
-            .forEach(movie => {
-              showLocation = locations
-                .filter(location => movie.internalLocationIds.split(',').includes(location.internalId))
-                .map(location => location._id)
-              console.log("La serie " + movie.title + " se ha vinculado con " + showLocation.length + " localizaciones")
-              Movieshow.findByIdAndUpdate(movie._id,
-                { $push: { locations: { $each: showLocation } } })
-                .then(response => {
-                  return removeMovie()
-                }).then(() => {
-                  return removeLocation()
-                }).then(r => {
-                  mongoose.disconnect()
-                }).catch(err => {
-                  console.log(err);
-                  // mongoose.disconnect();
-                });
-            })
+          linkMovieAndLocation()
         })
     });
 }
@@ -157,6 +136,34 @@ function addLocations(locationsUrl) {
     });
 }
 
+function linkMovieAndLocation() {
+  return Location.find({})
+    .then(locations => {
+      return Movieshow.find({})
+        .then(movies => {
+          moviesPromise = movies.filter(movie => movie.internalLocationIds != null)
+            .map(movie => {
+              showLocation = locations
+                .filter(location => movie.internalLocationIds.split(',').includes(location.internalId))
+                .map(location => location._id)
+              console.log("La serie " + movie.title + " se ha vinculado con " + showLocation.length + " localizaciones")
+              return Movieshow.update({ _id: movie._id },
+                { locations: showLocation })
+                .then(response => {
+                  return removeMovie()
+                }).then(() => {
+                  return removeLocation()
+                }).then(r => {
+                }).catch(err => {
+                  console.log(err)
+                });
+            })
+          Promise.all(moviesPromise).then(() => {
+            mongoose.disconnect()
+          });
+        })
+    })
+}
 
 function addCommentWithUsersAndLocations() {
   Comment.collection.drop();
@@ -166,10 +173,9 @@ function addCommentWithUsersAndLocations() {
         return User.find({})
           .then(users => {
             users = getRandom(users)
-            users.forEach(user => {
+            userPromise = users.map(user => {
               return addComment(user._id)
                 .then(response => {
-                  console.log(response)
                   return Location.findByIdAndUpdate(location._id,
                     { $push: { comments: { $each: [response] } } })
                     .then(r => {

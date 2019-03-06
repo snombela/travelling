@@ -19,7 +19,7 @@ router.get('/me/favorite', (req, res, next) => {
 
 router.post('/me/favorite', (req, res, next) => {
   if (req.isAuthenticated()) {
-    User.findOneAndUpdate(req.user._id,
+    User.findByIdAndUpdate(req.user._id,
       { $push: { favorites: req.body.locationId } }
     ).then(() => {
       User.findById(req.user._id)
@@ -35,7 +35,7 @@ router.post('/me/favorite', (req, res, next) => {
 
 router.delete('/me/favorite/:id', (req, res, next) => {
   if (req.isAuthenticated()) {
-    User.findOneAndUpdate(req.user._id,
+    User.findByIdAndUpdate(req.user._id,
       { $pull: { favorites: req.params.id } })
       .then(() => {
         User.findById(req.user._id)
