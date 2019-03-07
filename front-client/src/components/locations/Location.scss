@@ -3,7 +3,7 @@ img {
 }
 
 .carousel-item{
-    height: 550px;
+    height: 500px;
 }
 
 .image-carrusel {
@@ -94,6 +94,9 @@ img {
         display: flex;
         flex-direction: column;
     }  
+    .carousel-item{
+        height: 350px;
+    }
   }
   
   /* Device = Most of the Smartphones Mobiles (Portrait) Screen = B/w 320px to 479px*/
@@ -101,6 +104,10 @@ img {
     .info-container {
         display: flex;
         flex-direction: column;
+    }
+
+    .carousel-item{
+        height: 200px;
     }
     
   }

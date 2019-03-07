@@ -76,7 +76,7 @@ export default class Location extends Component {
     if (this.state.location !== null) {
       return (
         <div>
-          <div className="bd-example">
+          <div className="carrusel-container">
             <ReactBootstrapCarousel
               version={4}>
               {this.state.location.images.map(eachImage => {
