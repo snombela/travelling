@@ -3,7 +3,7 @@ import './App.scss';
 import { Switch, Route } from "react-router-dom";
 import Home from './components/Home';
 import Signup from './components/auth/Signup';
-import Navbar from './components/navbar/Navbar';
+import HeaderNavbar from './components/navbar/HeaderNavbar';
 import Login from './components/auth/Login';
 import Profile from './components/profile/Profile';
 import Movieshow from './components/movieshow/Movieshow';
@@ -26,7 +26,7 @@ class App extends Component {
     const { loggedInUser } = this.state
     return(
       <div className="App">
-        <Navbar changeUser={this.changeUser} user={this.state.user}/>
+        <HeaderNavbar changeUser={this.changeUser} user={this.state.user}/>
         <Switch>
           <Route exact path="/" component={Home}/>
           <Route exact path='/signup' render={() => <Signup changeUser={this.changeUser}/>}/>
