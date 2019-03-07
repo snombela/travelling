@@ -5,50 +5,20 @@
     height: 550px;
 }
   
-  /* Device = Tablets, Ipads (portrait) Screen = B/w 768px to 1024px*/
-  @media (min-width: 768px) and (max-width: 1024px) {
-    .image-background {
-        height: 450px;
-    }
-  }
-  
-  /* Device = Tablets, Ipads (landscape) Screen = B/w 768px to 1024px*/
-  @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-    .image-background {
-        height: 350px;
-    }
-  
-  }
-  
-  /* Device = Low Resolution Tablets, Mobiles (Landscape) Screen = B/w 481px to 767px*/
-  @media (min-width: 481px) and (max-width: 767px) {
-    .image-background {
-        height: 250px;
-    }
- 
-  }
-  
-  /* Device = Most of the Smartphones Mobiles (Portrait) Screen = B/w 320px to 479px*/
-  @media (max-width: 480px) {  
-    .image-background {
-        height: 200px;
-    }
-   
-  }
-
 .poster {
-    width: 180px;
-    height: 256px;
-    margin-top: -128px;
-    margin-left: 5%;
+    width: auto;
+    height: 220px;
+    margin-top: -110px;
+    margin-left: 8%;
     border: 2px solid #ffffff;
 }
 
 .movieshow-title {
     margin: 25px;
-    font-size: 3em;
+    font-size: 2.8em;
     font-weight: 300;
     line-height: 1.05em;
+    position: absolute;
 }
 
 .card-deck {
@@ -84,3 +54,64 @@
 
 }
 
+
+ /* Device = Tablets, Ipads (portrait) Screen = B/w 768px to 1024px*/
+ @media (min-width: 768px) and (max-width: 1024px) {
+    .image-background {
+        height: 450px;
+    }
+  }
+  
+  /* Device = Tablets, Ipads (landscape) Screen = B/w 768px to 1024px*/
+  @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+    .image-background {
+        height: 350px;
+    }
+
+    .poster {
+        height: 180px;
+        margin-top: -95px;
+    }
+    
+    .movieshow-title {
+        margin: 15px 0 0 20px;
+        font-size: 2em;
+    }
+  
+  }
+  
+  /* Device = Low Resolution Tablets, Mobiles (Landscape) Screen = B/w 481px to 767px*/
+  @media (min-width: 481px) and (max-width: 767px) {
+    .image-background {
+        height: 250px;
+    }
+
+    .poster {
+        height: 140px;
+        margin-top: -65px;
+    }
+    
+    .movieshow-title {
+        margin: 15px 0 0 20px;
+        font-size: 1.8em;
+    }
+ 
+  }
+  
+  /* Device = Most of the Smartphones Mobiles (Portrait) Screen = B/w 320px to 479px*/
+  @media (max-width: 480px) {  
+    .image-background {
+        height: 200px;
+    }
+  
+    .poster {
+        height: 120px;
+        margin-top: -65px;
+    }
+    
+    .movieshow-title {
+        margin: 15px 0 0 20px;
+        font-size: 1.5em;
+    }
+   
+  }
