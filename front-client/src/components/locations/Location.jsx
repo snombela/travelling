@@ -68,6 +68,10 @@ export default class Location extends Component {
     this.setState({ ...this.state, isFavorite: !this.state.isFavorite });
   }
 
+  getDateFormatted = (created_at) => {
+      return created_at.split("T")[0].split("-").reverse().join("/")
+  }
+
   render() {
     if (this.state.location !== null) {
       return (
@@ -107,8 +111,8 @@ export default class Location extends Component {
                     alt="user pic"
                   />
                   <div className="media-body">
+                    <h6>{this.getDateFormatted(eachComment.userId.username) + " - " +this.getDateFormatted(eachComment.created_at)}</h6>
                     <h6 className="mt-0">{eachComment.title}</h6>
-                    {/* <h6>{eachComment.created_at}</h6> */}
                     <p>{eachComment.content}</p>
                   </div>
                 </div>
