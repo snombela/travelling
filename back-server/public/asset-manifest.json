@@ -1,16 +1,16 @@
 {
-  "main.css": "/static/css/main.a7a7e25f.chunk.css",
-  "main.js": "/static/js/main.72b7cd11.chunk.js",
-  "main.js.map": "/static/js/main.72b7cd11.chunk.js.map",
+  "main.css": "/static/css/main.80b78dc6.chunk.css",
+  "main.js": "/static/js/main.cc767ca9.chunk.js",
+  "main.js.map": "/static/js/main.cc767ca9.chunk.js.map",
   "runtime~main.js": "/static/js/runtime~main.fdfcfda2.js",
   "runtime~main.js.map": "/static/js/runtime~main.fdfcfda2.js.map",
   "static/css/2.eca32cac.chunk.css": "/static/css/2.eca32cac.chunk.css",
   "static/js/2.7575a19c.chunk.js": "/static/js/2.7575a19c.chunk.js",
   "static/js/2.7575a19c.chunk.js.map": "/static/js/2.7575a19c.chunk.js.map",
   "index.html": "/index.html",
-  "precache-manifest.65a18381c1eca205996ba069b6ebf188.js": "/precache-manifest.65a18381c1eca205996ba069b6ebf188.js",
+  "precache-manifest.6daef8f5bff4a95512d75f2af52939dd.js": "/precache-manifest.6daef8f5bff4a95512d75f2af52939dd.js",
   "service-worker.js": "/service-worker.js",
   "static/css/2.eca32cac.chunk.css.map": "/static/css/2.eca32cac.chunk.css.map",
-  "static/css/main.a7a7e25f.chunk.css.map": "/static/css/main.a7a7e25f.chunk.css.map",
+  "static/css/main.80b78dc6.chunk.css.map": "/static/css/main.80b78dc6.chunk.css.map",
   "static/media/react-bootstrap-carousel.css": "/static/media/react-bootstrap-carousel.f7448c04.ttf"
 }
