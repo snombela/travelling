@@ -126,7 +126,7 @@ export default class Location extends Component {
           </div>
       );
     } else {
-      return <h1>No hay nada que mostrar</h1>;
+      return <div></div>;
     }
   }
 }
