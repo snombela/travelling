@@ -35,7 +35,7 @@ export default class Movieshow extends Component {
             {this.state.movieshow.locations.map((eachLocation, idx) => {
               return (
                 <div key={eachLocation._id} className="card">
-                  <div class="thumbnail">
+                  <div className="thumbnail">
                     <Link to={`/location/${eachLocation._id}`} style={{ textDecoration: 'none' }}>
                       <img src={eachLocation.images[0]} alt="pic place" className="card-img-top img-card" />
                       <div className="card-body">
@@ -47,7 +47,7 @@ export default class Movieshow extends Component {
               )
             })}
           </div>
-          {(this.state.movieshow.locations.lenght > 0) ?
+          {(this.state.movieshow.locations.length > 0) ?
             <div className="map">
               <Mapbox locations={this.state.movieshow.locations} />
             </div>
@@ -57,7 +57,7 @@ export default class Movieshow extends Component {
         </div>
       );
     } else {
-      return <div>No hay ninguna movieshow con este id</div>;
+      return <div></div>;
     }
   }
 }
