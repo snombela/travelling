@@ -9,8 +9,21 @@ export default class Navbar extends Component {
     this.state = { loggedInUser: null };
     this.service = new AuthService();
   }
+
+  componentDidMount() {
+    this.fetchUser();
+  }
+
   componentWillReceiveProps = nextProps => {
     this.setState({ ...this.state, loggedInUser: nextProps["user"] })
+  }
+
+  fetchUser = () => {
+    this.service.loggedin()
+      .then(user => {
+        this.setState({ loggedInUser: user });
+        this.props.changeUser(user)
+      })
   }
 
   logoutUser = () => {
@@ -25,11 +38,11 @@ export default class Navbar extends Component {
     return (
       <nav className="navbar navbar-expand-sm navbar-dark">
         <Link to="/" className="navbar-brand"><img src="/images/travelling-icon.png" alt="" /></Link>
-        
+
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
-        </button> 
-         <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
+        </button>
+        <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
           {(this.state.loggedInUser) ? (
             <ul className="navbar-nav">
               <li className="nav-item"><Link to='/profile' className="nav-link"><span>Profile</span></Link></li>
@@ -44,7 +57,7 @@ export default class Navbar extends Component {
               </ul>
             )
           }
-       </div>
+        </div>
       </nav>
     )
   }
