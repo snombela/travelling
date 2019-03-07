@@ -69,12 +69,19 @@ img {
 }
 
 .media-body h6 {
+    font-weight: 700;
+}
+
+.media-body h5 {
     font-weight: 800;
 }
 
 .button-fav {
     background-color: transparent;
     border: none;
+    margin-top: 15px;
+    width: 45px;
+    height: 45px;
 }
 
 .button-fav img {

@@ -42,7 +42,7 @@ export default class Comment extends Component {
       <div>
         <form onSubmit={this.handleFormSubmit}>
           <div className="form-group comment-container">
-            <input type="text" name="title" className="form-control" value={this.state.title} onChange={e => this.handleChange(e)} placeholder="Your name" />
+            <input type="text" name="title" className="form-control" value={this.state.title} onChange={e => this.handleChange(e)} placeholder="Description" />
             <textarea type="text" name="comment" className="form-control" value={this.state.comment} onChange={e => this.handleChange(e)} placeholder="What's your opinion?" />
             <input type="submit" value="Submit" className="btn btn-primary btn-submit" />
           </div>

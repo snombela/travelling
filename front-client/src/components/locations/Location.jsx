@@ -111,7 +111,7 @@ export default class Location extends Component {
                     alt="user pic"
                   />
                   <div className="media-body">
-                    <h6>{this.getDateFormatted(eachComment.userId.username) + " - " +this.getDateFormatted(eachComment.created_at)}</h6>
+                    <h5>{this.getDateFormatted(eachComment.userId.username) + " - " + this.getDateFormatted(eachComment.created_at)}</h5>
                     <h6 className="mt-0">{eachComment.title}</h6>
                     <p>{eachComment.content}</p>
                   </div>

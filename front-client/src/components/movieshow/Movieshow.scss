@@ -17,6 +17,7 @@
     .image-background {
         height: 350px;
     }
+  
   }
   
   /* Device = Low Resolution Tablets, Mobiles (Landscape) Screen = B/w 481px to 767px*/
@@ -24,6 +25,7 @@
     .image-background {
         height: 250px;
     }
+ 
   }
   
   /* Device = Most of the Smartphones Mobiles (Portrait) Screen = B/w 320px to 479px*/
@@ -31,6 +33,7 @@
     .image-background {
         height: 200px;
     }
+   
   }
 
 .poster {
@@ -42,8 +45,10 @@
 }
 
 .movieshow-title {
-    font-size: 40px;
     margin: 25px;
+    font-size: 3em;
+    font-weight: 300;
+    line-height: 1.05em;
 }
 
 .card-deck {
@@ -71,16 +76,11 @@
     object-fit: cover; 
 }
 
-h1 {
-    margin-top: 300px;
-
-}
-
 .map {
     display: flex;
     align-items: center;
     margin: 0 auto 70px auto !important;
     max-width: 1200px;
-    
-    
+
 }
+
