@@ -10,10 +10,16 @@ class CommentService {
   }
 
   sendComment = (locationId, content, title) => { 
-      const comment= {locationId: locationId, content: content, title: title }
+      const comment = {locationId: locationId, content: content, title: title }
       return this.service.post('/', comment) 
       .then(response => response.data)
   }
+
+  deleteComment = (commentId) => {
+    return this.service.delete(`/${commentId}`)
+    .then(response => response.data)
+  }
 }
+ 
 
 export default CommentService;

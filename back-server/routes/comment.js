@@ -29,9 +29,6 @@ router.delete("/comment/:commentId", (req, res, next) => {
   if (req.isAuthenticated()) {
     Comment.findById(req.params.commentId)
       .then(comment => {
-        console.log(comment.userId)
-        console.log(req.user._id)
-        console.log(comment.userId.equals(req.user._id))
         if (comment.userId.equals(req.user._id)) {
           Comment.findByIdAndDelete(req.params.commentId)
             .then(() => {

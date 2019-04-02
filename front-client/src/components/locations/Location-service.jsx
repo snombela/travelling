@@ -24,6 +24,8 @@ class LocationService {
     .then(response => response.data)
   }
 
+  
+
 }
 
 export default LocationService;

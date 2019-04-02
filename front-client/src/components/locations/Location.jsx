@@ -111,10 +111,12 @@ export default class Location extends Component {
                     alt="user pic"
                   />
                   <div className="media-body">
-                    <h5>{this.getDateFormatted(eachComment.userId.username) + " - " + this.getDateFormatted(eachComment.created_at)}</h5>
+                    <h5>{eachComment.userId.username + " - " + this.getDateFormatted(eachComment.created_at)}</h5>
                     <h6 className="mt-0">{eachComment.title}</h6>
                     <p>{eachComment.content}</p>
-                  </div>
+                    <button>Delete</button>
+                    {/* Capturar el click para que elimine el comentario llamando al service*/}
+                  </div> 
                 </div>
               </div>
             );
