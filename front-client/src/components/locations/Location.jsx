@@ -70,10 +70,14 @@ export default class Location extends Component {
     this.setState({ ...this.state, isFavorite: !this.state.isFavorite });
   }
 
-  clickDeleteButton = () => {
-    console.log("dentro")
-    const commentId = this.props.match.params.id;
-    this.serviceComment.deleteComment(commentId);
+  clickDeleteButton = (commentId) => {
+    
+    this.serviceComment.deleteComment(commentId)
+    .then(() => {
+      this.changeComment();
+    });
+    
+    
   }
 
   
@@ -98,7 +102,7 @@ export default class Location extends Component {
             <div className="left-container">
               <div className="title-container">
               <h1>{this.state.location.name}</h1>
-              <button className="button-fav" onClick={this.clickFavButton}>
+              <button className="button-fav" onClick={() => this.clickFavButton()}>
               {this.state.isFavorite ?
                   <img src="/images/red-heart.png" alt="heart" /> :
                   <img src="/images/grey-heart.png" alt="heart" />
@@ -124,7 +128,7 @@ export default class Location extends Component {
                     <h5>{eachComment.userId.username + " - " + this.getDateFormatted(eachComment.created_at)}</h5>
                     <h6 className="mt-0">{eachComment.title}</h6>
                     <p>{eachComment.content}</p>
-                    <button className="button-delete" onClick={this.clickDeleteButton}>Delete</button>
+                    <button className="button-delete" onClick={ () => this.clickDeleteButton(eachComment._id)}>Delete</button>
                     {/* Capturar el click para que elimine el comentario llamando al service*/}
                   </div> 
                 </div>
