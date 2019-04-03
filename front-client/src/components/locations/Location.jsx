@@ -5,6 +5,8 @@ import Comment from "../comment/Comment";
 import AccountService from "./Account-service";
 import Mapbox from "../maps/Mapbox";
 import ReactBootstrapCarousel from "react-bootstrap-carousel";
+import CommentService from "../comment/Comment-service";
+
 
 //url friendly
 //filtrado en busqueda
@@ -20,6 +22,7 @@ export default class Location extends Component {
     };
     this.serviceLocation = new LocationService();
     this.serviceAccount = new AccountService();
+    this.serviceComment = new CommentService();
   }
 
   componentDidMount() {
@@ -38,7 +41,6 @@ export default class Location extends Component {
   getComments = () => {
     const locationId = this.props.match.params.id;
     this.serviceLocation.getComments(locationId).then(comments => {
-      console.log(comments)
       this.setState({ ...this.state, comments: comments });
     });
   };
@@ -68,6 +70,14 @@ export default class Location extends Component {
     this.setState({ ...this.state, isFavorite: !this.state.isFavorite });
   }
 
+  clickDeleteButton = () => {
+    console.log("dentro")
+    const commentId = this.props.match.params.id;
+    this.serviceComment.deleteComment(commentId);
+  }
+
+  
+  
   getDateFormatted = (created_at) => {
       return created_at.split("T")[0].split("-").reverse().join("/")
   }
@@ -114,7 +124,7 @@ export default class Location extends Component {
                     <h5>{eachComment.userId.username + " - " + this.getDateFormatted(eachComment.created_at)}</h5>
                     <h6 className="mt-0">{eachComment.title}</h6>
                     <p>{eachComment.content}</p>
-                    <button>Delete</button>
+                    <button className="button-delete" onClick={this.clickDeleteButton}>Delete</button>
                     {/* Capturar el click para que elimine el comentario llamando al service*/}
                   </div> 
                 </div>
