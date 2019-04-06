@@ -19,7 +19,6 @@ export default class Profile extends Component {
 
   componentDidMount() {
     this.service.loggedin().then(user => {
-      console.log(user);
       this.setState({ ...this.state, user: user });
       this.props.changeUser(user);
     });
@@ -33,7 +32,6 @@ export default class Profile extends Component {
   }
 
   render() {
-    console.log(this.props.loggedInUser);
     if (this.props.loggedInUser !== null && this.state.user !== null) {
       return (
 
@@ -46,7 +44,7 @@ export default class Profile extends Component {
               {this.state.locations.map((eachLocation) => {
                 return (
                   <div key={eachLocation._id} className="card">
-                    <div class="thumbnail">
+                    <div className="thumbnail">
                       <Link to={`/location/${eachLocation._id}`} style={{ textDecoration: 'none' }}>
                         <img src={eachLocation.images[0]} alt="pic place" className="card-img-top img-card" />
                         <div className="card-body">

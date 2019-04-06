@@ -33,9 +33,12 @@ class App extends Component {
           <Route exact path='/login'  render={() => <Login changeUser={this.changeUser}/>}/>
           <Route exact path='/profile' render={() => <Profile changeUser={this.changeUser} loggedInUser={loggedInUser}/>}/>
           <Route exact path='/movieshow/:id' component={Movieshow}/>
-          <Route exact path='/location/:id' component={Location}/>
+          {/* <Route exact path='/location/:id' component={Location}/> */}
+          <Route exact path='/location/:id' render={(routeProps) => (<Location {...routeProps} user={this.state.user} />)}/>
           <Route exact path='/search' component={Search}/>
           <Route exact path='/searchLocation' component={SearchLocation}/>
+         
+          
         </Switch>
       </div>
 

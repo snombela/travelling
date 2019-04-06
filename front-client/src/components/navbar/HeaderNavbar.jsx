@@ -46,7 +46,7 @@ export default class HeaderNavbar extends Component {
 
   render() {
     return (
-      <Navbar dark="true" className="nav" expand="sm">
+      <Navbar dark={true} className="nav" expand="sm">
         <NavbarBrand href="/"><img src="/images/travelling-icon.png" alt="" /></NavbarBrand>
         <NavbarToggler onClick={this.toggle} />
         <Collapse className="justify-content-end" isOpen={this.state.isOpen} navbar>

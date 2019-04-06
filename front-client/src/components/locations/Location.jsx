@@ -71,20 +71,17 @@ export default class Location extends Component {
   }
 
   clickDeleteButton = (commentId) => {
-    
     this.serviceComment.deleteComment(commentId)
     .then(() => {
       this.changeComment();
-    });
-    
-    
+    });  
   }
 
-  
-  
   getDateFormatted = (created_at) => {
-      return created_at.split("T")[0].split("-").reverse().join("/")
+      return created_at.split("T")[0].split("-").reverse().join("/");
   }
+
+  isUserLogged = () => this.props.user !== null;
 
   render() {
     if (this.state.location !== null) {
@@ -93,8 +90,8 @@ export default class Location extends Component {
           <div className="carrusel-container">
             <ReactBootstrapCarousel
               version={4}>
-              {this.state.location.images.map(eachImage => {
-                return <img className="image-carrusel" src={eachImage} alt="images" />
+              {this.state.location.images.map((eachImage, index) => {
+                return <img key={index} className="image-carrusel" src={eachImage} alt="images" />
               })}
             </ReactBootstrapCarousel>
           </div>
@@ -102,11 +99,13 @@ export default class Location extends Component {
             <div className="left-container">
               <div className="title-container">
               <h1>{this.state.location.name}</h1>
+              {this.isUserLogged() ? 
               <button className="button-fav" onClick={() => this.clickFavButton()}>
               {this.state.isFavorite ?
                   <img src="/images/red-heart.png" alt="heart" /> :
                   <img src="/images/grey-heart.png" alt="heart" />
               }</button>
+              : <div></div>} 
               </div>
               <h4>{this.state.location.address}</h4>
               <p>{this.state.location.description}</p>
@@ -117,7 +116,7 @@ export default class Location extends Component {
           </div>
           {this.state.comments.map(eachComment => {
             return (
-              <div key={eachComment}>
+              <div key={eachComment._id}>
                 <div className="media">
                   <img
                     className="align-self-start mr-3"
@@ -135,10 +134,12 @@ export default class Location extends Component {
               </div>
             );
           })}
+          {this.isUserLogged() ? 
           <Comment
             locationId={this.state.location._id}
             changeComment={this.changeComment}
-          />
+          /> : <div></div>
+          }
           </div>
       );
     } else {

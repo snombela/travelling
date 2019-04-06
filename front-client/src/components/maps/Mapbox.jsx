@@ -40,8 +40,8 @@ export default class Mapbox extends Component {
           type="symbol"
           id="marker"
           layout={{ "icon-image": "marker-15" }}>
-          {this.props.locations.map(l => {
-            return <Feature coordinates={[l.longitude, l.latitude]} />
+          {this.props.locations.map((l, index) => {
+            return <Feature key={index} coordinates={[l.longitude, l.latitude]} />
           })}
         </Layer>
       </Map>
