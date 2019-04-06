@@ -83,6 +83,8 @@ export default class Location extends Component {
 
   isUserLogged = () => this.props.user !== null;
 
+  isThisUser = (userId) => this.props.user._id === userId;
+
   render() {
     if (this.state.location !== null) {
       return (
@@ -127,8 +129,9 @@ export default class Location extends Component {
                     <h5>{eachComment.userId.username + " - " + this.getDateFormatted(eachComment.created_at)}</h5>
                     <h6 className="mt-0">{eachComment.title}</h6>
                     <p>{eachComment.content}</p>
-                    <button className="button-delete" onClick={ () => this.clickDeleteButton(eachComment._id)}>Delete</button>
-                    {/* Capturar el click para que elimine el comentario llamando al service*/}
+                    {this.isThisUser(eachComment.userId._id)  ? 
+                    <button className="button-delete" onClick={ () => this.clickDeleteButton(eachComment._id)}>Delete</button> : <div>No puedes borrar este comentario</div>
+                    }
                   </div> 
                 </div>
               </div>
